@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   #resources :posts
   #resources :user
   #resources :admin
-  #resources :contacts, only: [:new, :create]
+  resources :contacts
 end
