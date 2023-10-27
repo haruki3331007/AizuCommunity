@@ -5,7 +5,7 @@
 </div>
 
 <div>
-    <%= form_with model: Post.new, url: posts_path do |p| %>
+    <%= form_with model: @new_post, url: posts_path do |p| %>
         <div>
             <p>タイトル</p>
             <%= p.text_field :title, autofocus: true, placeholder: "--タイトルを入力してください--" %>

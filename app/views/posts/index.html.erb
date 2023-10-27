@@ -8,15 +8,24 @@
 </div>
 
 <div>
-    <p>2</p>
-    <p>タイトル</p>
-    <p>名前</p>
-    <p>ユーザ名</p>
-    <p>内容</p>
-    <p>写真</p>
-    <p>いいね</p>
-    <div>
-        <p>コメント</p>
-        <p>いいね</p>
-    </div>
-</div>
+    <% @posts.each do |p| %>
+        <div>  
+            <div>
+                <%= p.title %>
+                <%= p.name %>
+                <%= p.user_name %>
+            </div>
+            <div>
+                <%= p.image %>
+                <%= p.body %>
+            </div>
+            <div>
+                <p>いいね</p>
+            </div>
+            <div>
+                <p>コメント</p>
+                <p>いいね</p>
+            </div>
+        </div>
+    <% end %>
+<div>
