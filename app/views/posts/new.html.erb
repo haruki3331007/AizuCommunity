@@ -12,7 +12,7 @@
         </div>
         <div>
             <p>ジャンル</p>
-            <%# p.collection_select(:genre, Genre.all, :id, :name, {include_blank: "--ジャンルを選択してください--"}) %>
+            <%= p.collection_select(:genre, Genre.all, :id, :name, {include_blank: "--ジャンルを選択してください--"}) %>
         </div>
         <div>
             <p>内容</p>

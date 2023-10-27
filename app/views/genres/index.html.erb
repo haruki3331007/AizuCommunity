@@ -1,0 +1,40 @@
+<--genres/index-->
+
+<div>
+    <p>ジャンル一覧</p>
+</div>
+
+<div>
+    <p><%= link_to "新規作成",  new_genre_path %></p>
+</div>
+
+<div>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>ジャンル名</th>
+            <th>使用回数</th>
+            <th>制作日時</th>
+            <th>edit</th>
+            <th>destroy</th>
+        </tr>
+
+        <% @genres.each do |g| %>
+            <tr>
+                <td><%= g.id %></td>
+                <td><%= g.name %></td>
+                <td><%= g.created_at.strftime("%Y/%m/%d") %></td>
+                <td><%= Post.find_all(genre: g.id).count %></td>
+                <td><%= link_to "edit", edit_genre_path(g.id) %></td>
+                <td><%= link_to "destroy", genre_path(g.id),  method: :delete %></td>
+            </tr>
+        <% end %>
+    </table>
+</div>
+
+<div>
+    <p>1</p>
+    <p>制作日時</p>
+    <p>ジャンル</p>
+    <>
+</div>
