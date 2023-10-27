@@ -1,0 +1,18 @@
+<--genres/edit-->
+
+<div>
+    <p>ジャンル 編集</p>
+</div>
+
+<div>
+    <%= form_with model: @edit_genre, url: genre_path, method: :PATCH do |g| %>
+        <div>
+            <p>ジャンル名</p>
+            <%= g.text_field :name, autofocus: true, placeholder: "--ジャンル名を入力してください--" %>
+        </div>
+
+        <div>
+            <%= g.submit "編集" %>
+        </div>
+    <% end %>
+</div>

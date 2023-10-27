@@ -17,6 +17,19 @@ class GenresController < ApplicationController
         end
     end
 
+    def edit
+        @edit_genre = Genre.find(params[:id])
+    end
+
+    def update
+        if Genre.find(params[:id]).update(genre_params)
+            redirect_to genres_path
+        else
+            @edit_genre = Genre.find(params[:id])
+            render :edit
+        end
+    end
+
     def destroy
         Genre.find(params[:id]).destroy
         redirect_to genres_path 
@@ -25,6 +38,6 @@ class GenresController < ApplicationController
     private
 
     def genre_params
-        params.require(:genre).permit(:name);
+        params.require(:genre).permit(:name)
     end
 end
