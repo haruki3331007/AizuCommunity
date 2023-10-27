@@ -1,0 +1,18 @@
+<--genres/new-->
+
+<div>
+    <p>ジャンル 新規作成</p>
+</div>
+
+<div>
+    <%= form_with model: @new_genre, url: genres_path, method: :POST do |g| %>
+        <div>
+            <p>ジャンル名</p>
+            <%= g.text_field :name, autofocus: true, placeholder: "--ジャンル名を入力してください--" %>
+        </div>
+
+        <div>
+            <%= g.submit "新規作成" %>
+        </div>
+    <% end %>
+</div>

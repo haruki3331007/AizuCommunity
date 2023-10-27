@@ -4,13 +4,17 @@ class GenresController < ApplicationController
     end
 
     def new
-
+        @new_genre = Genre.new
     end
 
     def create
-        genre=Genre.new(params[:id])
-        genre.save
-        redirect_to genre_index_path
+        genre=Genre.new(genre_params)
+        if genre.save
+            redirect_to genres_path
+        else
+            @new_genre = Genre.new(params[:id])
+            render :new
+        end
     end
 
     private

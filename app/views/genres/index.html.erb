@@ -23,18 +23,11 @@
             <tr>
                 <td><%= g.id %></td>
                 <td><%= g.name %></td>
+                <td><%= Post.where(genre: g.id).count %></td>
                 <td><%= g.created_at.strftime("%Y/%m/%d") %></td>
-                <td><%= Post.find_all(genre: g.id).count %></td>
                 <td><%= link_to "edit", edit_genre_path(g.id) %></td>
                 <td><%= link_to "destroy", genre_path(g.id),  method: :delete %></td>
             </tr>
         <% end %>
     </table>
-</div>
-
-<div>
-    <p>1</p>
-    <p>制作日時</p>
-    <p>ジャンル</p>
-    <>
 </div>
