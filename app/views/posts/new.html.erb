@@ -5,18 +5,26 @@
 </div>
 
 <div>
-    <p>1</p>
-    <p>検索</p>
-    <p>ジャンル</p>
-    <p>ソート</p>
-</div>
+    <%= form_with model: Post.new, url: posts_path do |p| %>
+        <div>
+            <p>タイトル</p>
+            <%= p.text_field :title, autofocus: true, placeholder: "--タイトルを入力してください--" %>
+        </div>
+        <div>
+            <p>ジャンル</p>
+            <%# p.collection_select(:genre, Genre.all, :id, :name, {include_blank: "--ジャンルを選択してください--"}) %>
+        </div>
+        <div>
+            <p>内容</p>
+            <%= p.text_area :body, placeholder: "--内容を入力してください--" %>
+        </div>
+        <div>
+            <p>画像</p>
+            <%= p.file_field :image %>
+        </div>
 
-<div>
-    <p>2</p>
-    <p>タイトル</p>
-    <p>名前</p>
-    <p>ユーザ名</p>
-    <p>ジャンル</p>
-    <p>内容</p>
-    <p>写真</p>
+        <div>
+            <%= p.submit "投稿" %>
+        </div>
+    <% end %>
 </div>
