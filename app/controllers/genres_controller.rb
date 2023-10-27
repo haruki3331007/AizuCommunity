@@ -19,7 +19,7 @@ class GenresController < ApplicationController
 
     def destroy
         Genre.find(params[:id]).destroy
-        redirect_to genres_path
+        redirect_to genres_path 
     end
 
     private
