@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root to: 'homes#top'
   get 'aboutUs' => 'homes#aboutUs'
-  resources :news, only:[:index]
+  resources :news
   resources :contacts
 
   resources :posts
