@@ -1,29 +1,45 @@
-<--users/show-->
+<--users/edit-->
 
 <div>
-    <p>アカウント</p>
+    <p>アカウント情報 編集</p>
 </div>
 
 <div>
     <p>1</p>
-    <p><%= current_user.name %></p>
-    <p><%= current_user.user_name %></p>
-    <p><%= current_user.email %></p>
-    <p><%= current_user.location_name %></p>
-</div>
+    <%= form_with model: @user, url: user_path(@user.id), method: :PATCH do |u| %>
+        <div>
+            <p>ニックネーム</p>
+            <%= u.text_field :name, autofocus: true, placeholder: "--ニックネームを入力してください--" %>
+        </div>
+        <div>
+            <p>ユーザネーム</p>
+            <%= u.text_field :user_name, placeholder: "--ユーザネームを入力してください--" %>
+        </div>
+        <div>
+            <p>お住まい</p>
+            <%= u.select :location, {'会津若松市内': 1, 
+                             '会津若松市外（福島県内）': 2, 
+                             '会津若松市外（福島県外）': 3},
+                            { include_blank: '選択してください'}%>
+        </div>
+        <div>
+            <p>メールアドレス</p>
+            <%= u.email_field :email, autocomplete: "email" %>
+        </div>
+        <div>
+            <p>パスワード</p>
+            <%= u.password_field :password, autocomplete: "new-password" %>
+            <% if @minimum_password_length %>
+                <em><%= @minimum_password_length %> 文字以上に設定してください。</em>
+            <% end %><br />
+        </div>
+        <div>
+            <p>パスワード（確認）</p>
+            <%= u.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
 
-<div>
-    <p>1</p>
-    <p>名前</p>
-    <p>ユーザ名</p>
-    <p>メールアドレス</p>
-    <p>住んでいる場所</p>
-    <p>パスワード</p>
-</div>
-
-<div>
-    <p>2</p>
-    <p>編集</p>
-    <p>ログアウト</p>
-    <p>アカウントを削除</p>
+        <div>
+            <%= u.submit "編集" %>
+        </div>
+    <% end %>
 </div>

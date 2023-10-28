@@ -6,15 +6,15 @@
 
 <div>
     <p>1</p>
-    <p><%= current_user.name %></p>
-    <p><%= current_user.user_name %></p>
-    <p><%= current_user.email %></p>
-    <p><%= current_user.location_name %></p>
+    <p><%= @user.name %></p>
+    <p><%= @user.user_name %></p>
+    <p><%= @user.email %></p>
+    <p><%= @user.location_name %></p>
 </div>
 
 <div>
     <p>2</p>
-    <p><%= link_to "アカウントを編集", edit_user_path(current_user.id) %></p>
-    <p><%= link_to "ログアウト", destroy_user_session_path(current_user.id) %></p>
-    <p><%= link_to "アカウントを削除", user_path(current_user.id), method: :destroy %></p>
+    <p><%= link_to "アカウントを編集", edit_user_path(@user.id) %></p>
+    <p><%= link_to "ログアウト", destroy_user_session_path, method: :DELETE %></p>
+    <p><%= link_to "アカウントを削除", user_path(@user.id), method: :DELETE %></p>
 </div>
