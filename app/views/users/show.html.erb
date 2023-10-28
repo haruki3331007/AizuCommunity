@@ -16,5 +16,5 @@
     <p>2</p>
     <p><%= link_to "アカウントを編集", edit_user_path(@user.id) %></p>
     <p><%= link_to "ログアウト", destroy_user_session_path, method: :DELETE %></p>
-    <p><%= link_to "アカウントを削除", user_path(@user.id), method: :DELETE %></p>
+    <p><%= link_to "アカウントを削除", user_path(@user.id), method: :DELETE, data: {confirm: "削除しますか？"} %></p>
 </div>
