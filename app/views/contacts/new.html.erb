@@ -5,10 +5,45 @@
 </div>
 
 <div>
-    <p>1</p>
-    <p>お名前</p>
-    <p>メールアドレス</p>
-    <p>ジャンル</p>
-    <p>タイトル</p>
-    <p>内容</p>
+    <%= form_with model: @contact, url: contacts_path do |c| %>
+        <div>
+            <p>お名前</p>
+            <% if user_signed_in?%>
+                <%= c.hidden_field :name, :value => current_user.name %>
+                <%= current_user.name %>
+            <% else %>
+                <%= c.text_field :name, autofocus: true, placeholder: "--ニックネームを入力--" %>
+            <% end %>
+        </div>
+        <div>
+            <p>メールアドレス</p>
+            <% if user_signed_in?%>
+                <%= c.hidden_field :email, :value => current_user.email %>
+                <%= current_user.email %>
+            <% else %>
+                <%= c.email_field :email, autocomplete: "e-mail" %>
+            <% end %>
+        </div>
+        <div>
+            <p>ジャンル</p>
+            <%= c.select :genre, {  'ユーザ登録について': 1, 
+                                    '投稿について': 2, 
+                                    'サイトについて': 3,
+                                    '管理人について': 4,
+                                    'その他': 5},
+                                { include_blank: '選択してください'}%>
+        </div>
+        <div>
+            <p>タイトル</p>
+            <%= c.text_field :title, autocomplete: "--タイトルを入力--" %>
+        </div>
+        <div>
+            <p>内容</p>
+            <%= c.text_area :body, autocomplete: "--内容を入力--" %>
+        </div>
+
+        <div>
+            <%= c.submit "送信" %>
+        </div>
+    <% end %>
 </div>
