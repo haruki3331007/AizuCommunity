@@ -1,0 +1,27 @@
+<--news/edit-->
+
+<div>
+    <p>Announcement 編集</p>
+</div>
+
+
+<div>
+    <%= form_with model: @edit_news, url: news_path(@edit_news.id), method: :PATCH do |n| %>
+        <div>
+            <p>タイトル</p>
+            <%= n.text_field :title, autofocus: true, placeholder: "--タイトルを入力してください--" %>
+        </div>
+        <div>
+            <p>内容</p>
+            <%= n.text_area :body, placeholder: "--内容を入力してください--" %>
+        </div>
+        <div>
+            <p>画像</p>
+            <%= n.file_field :image %>
+        </div>
+
+        <div>
+            <%= n.submit "投稿" %>
+        </div>
+    <% end %>
+</div>
