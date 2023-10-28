@@ -22,12 +22,12 @@
             <div>
                 <% if user_signed_in? %>
                     <% if p.likes.exists?(user_id: current_user.id)%>
-                        <%= link_to likes_path(post_id: p.id), method: :DELETE do %>
+                        <%= link_to like_path(post_id: p.id), method: :DELETE do %>
                             <%= image_tag "heart_active.png"%>
                             <%= p.likes.count %>
                         <% end %>
                     <% else %>
-                        <%= link_to likes_path(post_id: p.id), method: :post do %>
+                        <%= link_to like_path(post_id: p.id), method: :post do %>
                             <%= image_tag "heart_inactive.png"%>
                             <%= p.likes.count %>
                         <% end %>
@@ -37,8 +37,22 @@
                     <%= p.likes.count %>
                 <% end %>
             </div>
-            <div>
+
+            <div style="border:solid;">
+                <% if user_signed_in? %>
+                    <%= form_with model: p.comments, url: comments_path do |c| %>
+                        <%= c.text_field :body, autofocus: true, placeholder: "--コメント--"%>
+                        <%= c.hidden_field :post_id, :value => p.id %>
+                        <%= c.hidden_field :user_id, :value => current_user.id %>
+                        <%= c.submit "コメントを送信する" %>
+                    <% end %>
+                <% end %>
+
                 <p>コメント</p>
+                <% p.comments.all.each do |c| %>
+                    <%= c.body %>
+                <% end %>
+
                 <p>いいね</p>
             </div>
         </div>
