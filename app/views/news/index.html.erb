@@ -7,9 +7,19 @@
 <div>
     <p>1</p>
     <p>最新ニュース</p>
-    <div>
-        <p>日付</p>
-        <p>タイトル</p>
-        <p>内容</p>
-    </div>
+    <% @news.each do |n| %>
+        <div>
+            <p><%= n.created_at.strftime("%Y/%m/%d") %></p>
+            <p><%= n.title %></p>
+            <p><%= n.body %></p>
+            <%= attachment_image_tag n, :image %>
+            <p><%= link_to "編集", edit_news_path(n.id) %></p>
+            <p><%= link_to "削除", news_path(n.id), method: :DELETE %></p>
+        </div>
+    <% end %>
+</div>
+
+<div>
+    <p>2</p>
+    <p><%= link_to "新規投稿", new_news_path %></p>
 </div>
