@@ -20,7 +20,22 @@
                 <%= p.body %>
             </div>
             <div>
-                <p>いいね</p>
+                <% if user_signed_in? %>
+                    <% if p.likes.exists?(user_id: current_user.id)%>
+                        <%= link_to likes_path(post_id: p.id), method: :DELETE do %>
+                            <%= image_tag "heart_active.png"%>
+                            <%= p.likes.count %>
+                        <% end %>
+                    <% else %>
+                        <%= link_to likes_path(post_id: p.id), method: :post do %>
+                            <%= image_tag "heart_inactive.png"%>
+                            <%= p.likes.count %>
+                        <% end %>
+                    <% end %>
+                <% else %>
+                    <%= image_tag "heart_inactive.png"%>
+                    <%= p.likes.count %>
+                <% end %>
             </div>
             <div>
                 <p>コメント</p>

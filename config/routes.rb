@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :posts
   resources :genres
+  resource :likes
 
   resources :users, skip: [:new, :create]
   #resources :admin
