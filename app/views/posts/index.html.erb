@@ -33,8 +33,10 @@
                         <% end %>
                     <% end %>
                 <% else %>
-                    <%= image_tag "heart_inactive.png"%>
-                    <%= p.likes.count %>
+                    <%= link_to new_user_session_path do %>
+                        <%= image_tag "heart_inactive.png"%>
+                        <%= p.likes.count %>
+                    <% end %>
                 <% end %>
             </div>
 
@@ -51,9 +53,26 @@
                 <p>コメント</p>
                 <% p.comments.all.each do |c| %>
                     <%= c.body %>
-                <% end %>
 
-                <p>いいね</p>
+                    <% if user_signed_in? %>
+                        <% if c.likes.exists?(user_id: current_user.id)%>
+                            <%= link_to like_path(comment_id: c.id, post_id: nil), method: :DELETE do %>
+                                <%= image_tag "heart_active.png"%>
+                                <%= c.likes.count %>
+                            <% end %>
+                        <% else %>
+                            <%= link_to like_path(comment_id: c.id, post_id: nil), method: :post do %>
+                                <%= image_tag "heart_inactive.png"%>
+                                <%= c.likes.count %>
+                            <% end %>
+                        <% end %>
+                    <% else %>
+                        <%= link_to new_user_session_path do %>
+                            <%= image_tag "heart_inactive.png"%>
+                            <%= c.likes.count %>
+                        <% end %>
+                    <% end %>
+                <% end %>
             </div>
         </div>
     <% end %>
