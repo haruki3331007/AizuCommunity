@@ -1,0 +1,25 @@
+<--users/index-->
+
+<table>
+    <thead>
+        <tr>
+            <th>ユーザID</th>
+            <th>名前</th>
+            <th>ユーザネーム</th>
+            <th>居住地</th>
+            <th>メールアドレス</th>
+        <tr>
+    </thead>
+
+    <tbody>
+        <% @users.each do |u| %>
+            <tr>
+                <th><%= u.id %></th>
+                <td><%= u.name %></td>
+                <td><%= u.user_name %></td>
+                <td><%= u.location_name %></td>
+                <td><%= u.email %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

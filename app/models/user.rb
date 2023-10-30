@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :delete_all
   has_many :likes, dependent: :delete_all
 
+  validates :user_name, uniqueness: true
+
   def location_name
     case self.location
     when 1
