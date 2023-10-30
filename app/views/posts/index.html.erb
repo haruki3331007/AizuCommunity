@@ -7,6 +7,13 @@
     <p>ソート</p>
 </div>
 
+<% if user_signed_in? %>   
+    <%= link_to "新規投稿", new_post_path %>
+<% else %>
+    <%= link_to "新規投稿", new_user_session_path %>
+<% end %>
+
+
 <div>
     <% @posts.each do |p| %>
         <div style="border:solid;">  
