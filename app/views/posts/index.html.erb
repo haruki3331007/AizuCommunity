@@ -27,6 +27,11 @@
                     <%= link_to "投稿の削除", post_path(p.id), method: :DELETE, data: {confirm: "削除しますか？"} %>
                 </div>
             <% end %>
+            <% if p.user.id == current_user.id%>
+                <div>
+                    <%= link_to "投稿の編集", edit_post_path(p.id) %>
+                </div>
+            <% end %>
             <div>
                 <%= attachment_image_tag p, :image %>
                 <%= p.body %>
