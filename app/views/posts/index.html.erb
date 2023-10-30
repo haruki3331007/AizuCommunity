@@ -22,6 +22,11 @@
                 <%= p.user.name %>
                 <%= p.user.user_name %>
             </div>
+            <% if p.user.id == current_user.id || admin_signed_in? %>
+                <div>
+                    <%= link_to "投稿の削除", post_path(p.id), method: :DELETE, data: {confirm: "削除しますか？"} %>
+                </div>
+            <% end %>
             <div>
                 <%= attachment_image_tag p, :image %>
                 <%= p.body %>
