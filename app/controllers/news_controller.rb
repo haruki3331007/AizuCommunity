@@ -1,4 +1,6 @@
 class NewsController < ApplicationController
+    before_action :correct_admin, except: [:index]
+
     def index
         @news = News.all
     end
@@ -38,6 +40,12 @@ class NewsController < ApplicationController
     end
 
     private
+
+    def correct_admin
+        unless admin_signed_in?
+            redirect_to root_path
+        end
+    end
 
     def news_params
         params.require(:news).permit(:title, :body, :image);

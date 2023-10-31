@@ -13,13 +13,16 @@
             <p><%= n.title %></p>
             <p><%= n.body %></p>
             <%= attachment_image_tag n, :image %>
-            <p><%= link_to "編集", edit_news_path(n.id) %></p>
-            <p><%= link_to "削除", news_path(n.id), method: :DELETE %></p>
+            <% if admin_signed_in? %>
+                <p><%= link_to "編集", edit_news_path(n.id) %></p>
+                <p><%= link_to "削除", news_path(n.id), method: :DELETE %></p>
+            <% end %>
         </div>
     <% end %>
 </div>
 
 <div>
-    <p>2</p>
-    <p><%= link_to "新規投稿", new_news_path %></p>
+    <% if admin_signed_in? %>
+        <%= link_to "新規投稿", new_news_path %>
+    <% end %>
 </div>
