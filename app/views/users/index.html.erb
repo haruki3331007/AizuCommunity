@@ -8,6 +8,8 @@
             <th>ユーザネーム</th>
             <th>居住地</th>
             <th>メールアドレス</th>
+            <th>ユーザ編集</th>
+            <th>ユーザ削除</th>
         <tr>
     </thead>
 
@@ -19,6 +21,8 @@
                 <td><%= u.user_name %></td>
                 <td><%= u.location_name %></td>
                 <td><%= u.email %></td>
+                <td><%= link_to "ユーザ編集", edit_user_path(u.id)  %></td>
+                <td><%= link_to "ユーザ削除", user_path(u.id), method: :DELETE, data: {confirm: "削除しますか？"}  %></td>
             </tr>
         <% end %>
     </tbody>

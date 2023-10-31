@@ -4,6 +4,8 @@
     <p>1</p>
     <% if user_signed_in?%>
         <p><%= link_to "ログアウト", destroy_user_session_path, method: :DELETE %></p>
+    <% elsif admin_signed_in?%>
+        <p><%= link_to "管理人 ログアウト", destroy_admin_session_path, method: :DELETE %></p>
     <% else %>
         <p><%= link_to "新規登録", new_user_registration_path %></p>
         <p><%= link_to "ログイン", new_user_session_path %></p>
@@ -16,7 +18,9 @@
     <p><%= link_to "投稿一覧", posts_path %></p>
     <p><%= link_to "コンタクト", new_contact_path %></p>
     <p><%= link_to "About Us", aboutUs_path %></p>
-    <%if user_signed_in? %>
+    <% if user_signed_in? %>
         <p><%= link_to "ユーザページ", user_path(current_user.id) %></p>
+    <% elsif admin_signed_in? %>
+        <p><%= link_to "ユーザ一覧", users_path %></p>
     <% end %>
 </div>

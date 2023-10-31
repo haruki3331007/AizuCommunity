@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+    before_action :correct_user, except: [:index]
+    before_action :authenticate_admin!, only: [:index]
+
     def index
         @users = User.all
     end
@@ -34,6 +37,12 @@ class UsersController < ApplicationController
     end
 
     private
+
+    def correct_user
+        unless (user_signed_in? && current_user == User.find(params[:id]))  || admin_signed_in?
+            redirect_to root_path
+        end
+    end
 
     def user_params
         params.require(:user).permit(   :name, 
