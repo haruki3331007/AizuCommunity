@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
+    before_action :correct_admin, only: [:index]
     def index
-
+        @contacts = Contact.all
     end
 
     def new
@@ -31,6 +32,11 @@ class ContactsController < ApplicationController
     end
 
     private
+    def correct_admin
+        unless admin_signed_in?
+            redirect_to root_path
+        end
+    end
 
     def contact_params
         params.require(:contact).permit(:name, :email, :genre, :title, :body)

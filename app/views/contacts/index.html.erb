@@ -1,0 +1,41 @@
+<--contacts/index-->
+
+<div>
+    <p>お問合せ一覧</p>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>お問合せID</th>
+            <th>名前</th>
+            <th>登録済み</th>
+            <th>日付</th>
+            <th>ジャンル</th>
+            <th>タイトル</th>
+            <th>ユーザ編集</th>
+            <th>ユーザ削除</th>
+        <tr>
+    </thead>
+
+    <tbody>
+        <% @contacts.each do |c| %>
+            <tr>
+                <th><%= c.id %></th>
+                <td><%= c.name %></td>
+                <td>
+                    <% if User.exists?(email: c.email)%>
+                        ◯
+                    <% else %>
+                        <br>
+                    <% end %>
+                </td>
+                <td><%= c.created_at.strftime("%m/%d") %></td>
+                <td><%= c.genre_name %></td>
+                <td><%= c.title %></td>
+                <td><%= link_to "お問合せ詳細", contact_path(c.id)  %></td>
+                <td><%= link_to "お問合せ削除", contact_path(c.id), method: :DELETE, data: {confirm: "削除しますか？"}  %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
