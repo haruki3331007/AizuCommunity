@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :correct_user, except: [:index]
-    before_action :authenticate_admin!, only: [:index]
+    before_action :correct_admin, only: [:index]
 
     def index
         @users = User.all
@@ -40,6 +40,12 @@ class UsersController < ApplicationController
 
     def correct_user
         unless (user_signed_in? && current_user == User.find(params[:id]))  || admin_signed_in?
+            redirect_to root_path
+        end
+    end
+
+    def correct_admin
+        unless admin_signed_in?
             redirect_to root_path
         end
     end
