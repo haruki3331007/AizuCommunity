@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-    before_action :correct_admin, only: [:index]
+    before_action :correct_admin, only: [:index, :show, :destroy]
     def index
         @contacts = Contact.all
     end
