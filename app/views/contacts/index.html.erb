@@ -7,6 +7,7 @@
 <table>
     <thead>
         <tr>
+            <th>返信済み</th>
             <th>お問合せID</th>
             <th>名前</th>
             <th>登録済み</th>
@@ -21,7 +22,14 @@
     <tbody>
         <% @contacts.each do |c| %>
             <tr>
-                <th><%= c.id %></th>
+                <td>
+                    <% if c.reply == true %>
+                        ◯
+                    <% else %>
+                        <br>
+                    <% end %>
+                </td>
+                <td><%= c.id %></td>
                 <td><%= c.name %></td>
                 <td>
                     <% if User.exists?(email: c.email)%>

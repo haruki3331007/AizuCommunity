@@ -1,7 +1,7 @@
 <--contacts/show-->
 
 <div>
-    <p>お問合せ #<%= @contact.id %></p>
+    <p>お問合せ #<%= @contact.id %><% if @contact.reply == true %> （返信済み）<% end %></p>
 </div>
 
 <%= form_with model: @contact, url: contact_path(@contact.id), method: :PATCH do |c| %>
