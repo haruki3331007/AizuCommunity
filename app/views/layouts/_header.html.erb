@@ -13,10 +13,13 @@
 </div>
 
 <div>
-    <p>2</p>
     <p><%= link_to "新着情報", news_index_path %></p>
     <p><%= link_to "投稿一覧", posts_path %></p>
-    <p><%= link_to "コンタクト", new_contact_path %></p>
+    <% if admin_signed_in?%>
+        <p><%= link_to "コンタクト一覧", contacts_path %></p>
+    <% else %>
+        <p><%= link_to "コンタクト", new_contact_path %></p>
+    <% end %>
     <p><%= link_to "About Us", aboutUs_path %></p>
     <% if user_signed_in? %>
         <p><%= link_to "ユーザページ", user_path(current_user.id) %></p>

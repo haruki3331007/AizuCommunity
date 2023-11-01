@@ -22,12 +22,12 @@
                 <%= p.user.name %>
                 <%= p.user.user_name %>
             </div>
-            <% if p.user.id == current_user.id || admin_signed_in? %>
+            <% if admin_signed_in? || p.user.id == current_user.id %>
                 <div>
                     <%= link_to "投稿の削除", post_path(p.id), method: :DELETE, data: {confirm: "削除しますか？"} %>
                 </div>
             <% end %>
-            <% if p.user.id == current_user.id%>
+            <% if user_signed_in? && p.user.id == current_user.id%>
                 <div>
                     <%= link_to "投稿の編集", edit_post_path(p.id) %>
                 </div>

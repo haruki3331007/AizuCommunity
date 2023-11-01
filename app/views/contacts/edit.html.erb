@@ -1,0 +1,62 @@
+<--contacts/show-->
+
+<div>
+    <p>お問合せ #<%= @contact.id %></p>
+</div>
+
+<%= form_with model: @contact, url: contact_path(@contact.id), method: :PATCH do |c| %>
+    <table>
+            <tr>
+                <th>お問合せID</th>
+                <td><%= @contact.id %></td>
+            </tr>
+            <tr>
+                <th>名前</th>
+                <td><%= @contact.name %></td>
+                <%= c.hidden_field :name, :value => @contact.name %>
+            </tr>
+            <tr>
+                <th>メールアドレス</th>
+                <td><%= @contact.email %></td>
+                <%= c.hidden_field :email, :value => @contact.email %>
+            </tr>
+            <tr>
+                <th>登録済み</th>
+                <td>
+                    <% if User.exists?(email: @contact.email)%>
+                        ◯
+                    <% else %>
+                        <br>
+                    <% end %>
+                </td>
+            </tr>
+            <tr>
+                <th>日付</th>
+                <td><%= @contact.created_at.strftime("20%y/%m/%d") %></td>
+            </tr>
+            <tr>
+                <th>ジャンル</th>
+                <td><%= @contact.genre_name %></td>
+                <%= c.hidden_field :genre, :value => @contact.genre %>
+            </tr>   
+            <tr>
+                <th>タイトル</th>
+                <td><%= @contact.title %></td>
+                <%= c.hidden_field :title, :value => @contact.title %>
+            </tr>
+            <tr>
+                <th>本文</th>
+                <td><%= @contact.body %></td>
+                <%= c.hidden_field :body, :value => @contact.body %>
+            </tr>    
+            <tr>
+                <th>ユーザ削除</th>
+                <td><%= link_to "お問合せ削除", contact_path(@contact.id), method: :DELETE, data: {confirm: "削除しますか？"}  %></td>
+            </tr>  
+    </table>
+
+    <%= c.hidden_field :reply, :value => true %>
+    <%= c.text_area :reply_body %>
+
+    <%= c.submit "返信を送信する" %>
+<% end %>

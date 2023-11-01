@@ -33,7 +33,7 @@
                 <td><%= c.created_at.strftime("%m/%d") %></td>
                 <td><%= c.genre_name %></td>
                 <td><%= c.title %></td>
-                <td><%= link_to "お問合せ詳細", contact_path(c.id)  %></td>
+                <td><%= link_to "お問合せ詳細", edit_contact_path(c.id)  %></td>
                 <td><%= link_to "お問合せ削除", contact_path(c.id), method: :DELETE, data: {confirm: "削除しますか？"}  %></td>
             </tr>
         <% end %>

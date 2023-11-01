@@ -6,6 +6,9 @@ class CreateContacts < ActiveRecord::Migration[6.1]
         t.integer :genre, null: false
         t.string :title, null: false
         t.string :body, null: false
+
+        t.boolean :reply, null: false, default: false
+        t.string :reply_body, null: true, default: nil
       t.timestamps
     end
   end

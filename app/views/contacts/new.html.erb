@@ -43,6 +43,8 @@
         </div>
 
         <div>
+            <%= c.hidden_field :reply, :value => false %>
+            <%= c.hidden_field :reply_body, :value => nil %>
             <%= c.submit "送信", data: {confirm: "送信しますか？"} %>
         </div>
     <% end %>

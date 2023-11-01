@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 2023_10_28_083027) do
     t.integer "genre", null: false
     t.string "title", null: false
     t.string "body", null: false
+    t.boolean "reply", default: false, null: false
+    t.string "reply_body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
