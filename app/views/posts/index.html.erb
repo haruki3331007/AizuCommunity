@@ -3,6 +3,16 @@
 <div>
     <p>1</p>
     <p>検索</p>
+
+    <form action="/posts">
+        <select id="genre" name="genre" >
+            <%= Genre.all.each do |g| %>
+                <option value=<%=g.id%>><%= g.name %></option>
+            <% end %>
+        </select>
+        <input type="submit">
+    </form>
+    
     <p>ジャンル</p>
     <p>ソート</p>
 </div>
@@ -15,82 +25,85 @@
 
 
 <div>
-    <% @posts.each do |p| %>
-        <div style="border:solid;">  
-            <div>
-                <%= p.title %>
-                <%= p.user.name %>
-                <%= p.user.user_name %>
-            </div>
-            <% if admin_signed_in? || p.user.id == current_user.id %>
+    <% if @posts != nil%>
+        <% @posts.each do |p| %>
+            <div style="border:solid;">  
                 <div>
-                    <%= link_to "投稿の削除", post_path(p.id), method: :DELETE, data: {confirm: "削除しますか？"} %>
+                    <%= p.title %>
+                    <%= p.user.name %>
+                    <%= p.user.user_name %>
                 </div>
-            <% end %>
-            <% if user_signed_in? && p.user.id == current_user.id%>
+
+                <% if admin_signed_in? || ( user_signed_in? && p.user.id == current_user.id )%>
+                    <div>
+                        <%= link_to "投稿の削除", post_path(p.id), method: :DELETE, data: {confirm: "削除しますか？"} %>
+                    </div>
+                <% end %>
+                <% if user_signed_in? && p.user.id == current_user.id%>
+                    <div>
+                        <%= link_to "投稿の編集", edit_post_path(p.id) %>
+                    </div>
+                <% end %>
                 <div>
-                    <%= link_to "投稿の編集", edit_post_path(p.id) %>
+                    <%= attachment_image_tag p, :image %>
+                    <%= p.body %>
                 </div>
-            <% end %>
-            <div>
-                <%= attachment_image_tag p, :image %>
-                <%= p.body %>
-            </div>
-            <div>
-                <% if user_signed_in? %>
-                    <% if p.likes.exists?(user_id: current_user.id)%>
-                        <%= link_to like_path(post_id: p.id), method: :DELETE do %>
-                            <%= image_tag "heart_active.png"%>
-                            <%= p.likes.count %>
-                        <% end %>
-                    <% else %>
-                        <%= link_to like_path(post_id: p.id), method: :post do %>
-                            <%= image_tag "heart_inactive.png"%>
-                            <%= p.likes.count %>
-                        <% end %>
-                    <% end %>
-                <% else %>
-                    <%= link_to new_user_session_path do %>
-                        <%= image_tag "heart_inactive.png"%>
-                        <%= p.likes.count %>
-                    <% end %>
-                <% end %>
-            </div>
-
-            <div style="border:solid;">
-                <% if user_signed_in? %>
-                    <%= form_with model: p.comments, url: comments_path do |c| %>
-                        <%= c.text_field :body, autofocus: true, placeholder: "--コメント--"%>
-                        <%= c.hidden_field :post_id, :value => p.id %>
-                        <%= c.hidden_field :user_id, :value => current_user.id %>
-                        <%= c.submit "コメントを送信する" %>
-                    <% end %>
-                <% end %>
-
-                <p>コメント</p>
-                <% p.comments.all.each do |c| %>
-                    <%= c.body %>
-
+                <div>
                     <% if user_signed_in? %>
-                        <% if c.likes.exists?(user_id: current_user.id)%>
-                            <%= link_to like_path(comment_id: c.id, post_id: nil), method: :DELETE do %>
+                        <% if p.likes.exists?(user_id: current_user.id)%>
+                            <%= link_to like_path(post_id: p.id), method: :DELETE do %>
                                 <%= image_tag "heart_active.png"%>
-                                <%= c.likes.count %>
+                                <%= p.likes.count %>
                             <% end %>
                         <% else %>
-                            <%= link_to like_path(comment_id: c.id, post_id: nil), method: :post do %>
+                            <%= link_to like_path(post_id: p.id), method: :post do %>
                                 <%= image_tag "heart_inactive.png"%>
-                                <%= c.likes.count %>
+                                <%= p.likes.count %>
                             <% end %>
                         <% end %>
                     <% else %>
                         <%= link_to new_user_session_path do %>
                             <%= image_tag "heart_inactive.png"%>
-                            <%= c.likes.count %>
+                            <%= p.likes.count %>
                         <% end %>
                     <% end %>
-                <% end %>
+                </div>
+
+                <div style="border:solid;">
+                    <% if user_signed_in? %>
+                        <%= form_with model: p.comments, url: comments_path do |c| %>
+                            <%= c.text_field :body, autofocus: true, placeholder: "--コメント--"%>
+                            <%= c.hidden_field :post_id, :value => p.id %>
+                            <%= c.hidden_field :user_id, :value => current_user.id %>
+                            <%= c.submit "コメントを送信する" %>
+                        <% end %>
+                    <% end %>
+
+                    <p>コメント</p>
+                    <% p.comments.all.each do |c| %>
+                        <%= c.body %>
+
+                        <% if user_signed_in? %>
+                            <% if c.likes.exists?(user_id: current_user.id)%>
+                                <%= link_to like_path(comment_id: c.id, post_id: nil), method: :DELETE do %>
+                                    <%= image_tag "heart_active.png"%>
+                                    <%= c.likes.count %>
+                                <% end %>
+                            <% else %>
+                                <%= link_to like_path(comment_id: c.id, post_id: nil), method: :post do %>
+                                    <%= image_tag "heart_inactive.png"%>
+                                    <%= c.likes.count %>
+                                <% end %>
+                            <% end %>
+                        <% else %>
+                            <%= link_to new_user_session_path do %>
+                                <%= image_tag "heart_inactive.png"%>
+                                <%= c.likes.count %>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                </div>
             </div>
-        </div>
+        <% end %>
     <% end %>
 <div>

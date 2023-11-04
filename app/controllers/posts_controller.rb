@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
     def index
-        @posts = Post.all
+        if params[:genre]
+            @posts = Post.where(genre: (params[:genre]).to_i)
+        else
+            @posts = Post.all
+        end
     end
 
     def new
