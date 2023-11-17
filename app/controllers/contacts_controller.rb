@@ -1,11 +1,11 @@
 class ContactsController < ApplicationController
-    before_action :correct_admin, only: [:index, :show, :destroy]
+    before_action :correct_admin, only: [:index, :destroy]
     def index
-        @contacts = Contact.all
+        @contacts = Contact.page(params[:page]).per(10)
     end
 
-    def show
-        @contact = Contact.find(params[:id])
+    def complete
+        
     end
 
     def new
@@ -16,7 +16,7 @@ class ContactsController < ApplicationController
         contact = Contact.new(contact_params)
         if contact.save
             ContactMailer.with(contact: contact).contact.deliver_now
-            redirect_to root_path
+            redirect_to contacts_complete_path
         else
             @contact = contact
             render "new"
@@ -30,6 +30,7 @@ class ContactsController < ApplicationController
     def update
         contact = Contact.find(params[:id])
         if contact.update(contact_params)
+            ContactMailer.with(contact: contact).reply.deliver_now
             redirect_to contacts_path
         else
             @contact = contact

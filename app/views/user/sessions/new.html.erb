@@ -1,26 +1,31 @@
-<h2>ログイン</h2>
+<%= stylesheet_link_tag 'form', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <p>メールアドレス</p>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<div class="pageTitle">
+    <div class="pageTitleJP">
+        <p class="pageTitleJP_p">ログイン</p>
+        <div class="pageTitleENG"><p class="pageTitleENG_p">SIGN IN</p></div>
+    </div>
+</div>
 
-  <div class="field">
-    <p>パスワード</p>
-    <%= f.password_field :password, autocomplete: "password" %>
-  </div>
+<!--user/sessions/new-->
+<div class="form">   
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= render "user/shared/error_messages", resource: resource %>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="formBox">
+      <p class="formLabel">メールアドレス</p>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", :class=>"formInput"  %>
+    </div>
+
+    <div class="formBox">
+      <p class="formLabel">パスワード</p>
+      <%= f.password_field :password, autocomplete: "password", :class=>"formInput"  %>
+    </div>
+
+    <div class="bt">
+      <%= f.submit "ログイン" %>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
-
-<%= render "user/shared/links" %>
+  <%= render "user/shared/links" %>
+</div>

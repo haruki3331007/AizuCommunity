@@ -1,18 +1,24 @@
-<--genres/new-->
+<%= stylesheet_link_tag 'form', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<div>
-    <p>ジャンル 新規作成</p>
+<div class="pageTitle">
+    <div class="pageTitleJP">
+        <p class="pageTitleJP_p">ジャンル</p>
+        <div class="pageTitleENG"><p class="pageTitleENG_p">GENRE</p></div>
+    </div>
 </div>
 
-<div>
+<!--genres/new-->
+<div class="form">
     <%= form_with model: @new_genre, url: genres_path, method: :POST do |g| %>
-        <div>
-            <p>ジャンル名</p>
-            <%= g.text_field :name, autofocus: true, placeholder: "--ジャンル名を入力してください--" %>
+        <%= render 'layouts/error', model: g.object %>
+        
+        <div class="formBox">
+            <p class="formLabel">ジャンル名</p>
+            <%= g.text_field :name, autofocus: true, placeholder: "--ジャンル名--", :class=>"formInput"  %>
         </div>
 
-        <div>
-            <%= g.submit "新規作成" %>
+        <div class="bt">
+            <%= g.submit "新規作成/CREATE" %>
         </div>
     <% end %>
 </div>

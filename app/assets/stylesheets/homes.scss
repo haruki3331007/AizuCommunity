@@ -1,3 +1,236 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.home{
+    padding: 8px 0;
+
+    .homeImg{
+        width: 100%;
+        border-radius: 24px;
+    }
+
+
+    .homeBox1{
+        width: 100%;
+        padding: 40px 0;
+        .infoBox{
+            width: 90%;
+            padding: 40px;
+
+            .title{
+                font-size: 56px; 
+                text-align: center;
+                color: rgb(71, 71, 71);
+            }
+            .body{
+                padding: 16px 0;
+                p{
+                    font-size: 24px;
+                    padding: 12px 0;
+                    color: rgb(128, 128, 128);
+                }
+            }
+        }
+    }
+
+
+    .homeBox2{
+        background-color: rgb(214, 164, 155);
+        padding: 32px 24px;
+        border-radius: 24px;
+        .homeBox2Body{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            .bodyBox{
+                width: 320px;            
+                .bodyImg{
+                    display: block;
+                    width: 75%;
+                    margin: 0 auto;
+                }
+                .bodyInfoBox{
+                    width: 100%;
+                    height: fit-content;
+                    background-color: white;
+                    margin: 24px 0;
+                    padding: 16px;
+                    border-radius: 24px;
+                    .title{
+                        font-size: 28px;
+                        text-align: center;
+                        text-decoration: underline;
+                    }
+                    .body{
+                        margin: 16px 0;
+                        p{
+                            margin: 12px 0;
+                            text-align: center;
+                            color: rgb(128, 128, 128);
+                        }
+                    }
+                }
+            }
+        }
+
+        .homeBox2Bt{
+            .bt{
+                width: fit-content;
+                height: 40px;
+                margin-left: auto;
+                margin-right: 24px;
+                .btLink{
+                    font-size: 24px;
+                    padding: 0 40px;
+                    line-height: 40px;
+                }
+            }
+        }
+    }
+
+
+    .homeBox3{
+        padding: 48px 0;
+        .titleBox{
+            display: flex;
+            .title{
+                width: 64px;
+                height: 64px;
+                border-radius: 50%;
+                background-color: rgb(214, 164, 155);
+                p{
+                    font-size:  46px;
+                    color: white;
+                    text-align: center;
+                    line-height: 64px;
+                }
+            }
+        }
+
+        .infoBox{
+            width: 90%;
+            height: 360px;
+            margin: 24px auto;
+            overflow: scroll;
+
+            .date{
+                color: rgb(128, 128, 128);
+                font-size:  24px;
+                text-align: center;
+            }
+            .news_title{
+                font-size:  38px;
+                text-align: center;
+                text-decoration: underline;
+                margin: 16px 0;
+            }
+            .body{
+                margin: 24px;
+            }
+            .imgBox{
+                width: 80%;
+                margin: 24px auto;
+                .img{
+                    width: 100%;
+                }
+            }
+        }
+
+        .bt{
+            width: fit-content;
+            height: 40px;
+            margin-left: auto;
+            margin-right: 24px;
+            .btLink{
+                font-size: 24px;
+                padding: 0 40px;
+                line-height: 40px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 820px) {
+        .homeBox1{
+            padding: 16px 2px;
+            .infoBox{
+                width: 100%;
+                padding:24px 16px 12px 16px;
+                .title{ font-size: 24px;}
+                .body{
+                    p{
+                        font-size: 12px;
+                        padding: 4px 0;
+                    }
+                }
+            }
+        }
+
+        .homeBox2{
+            padding: 16px 0;
+            width: 90%;
+            margin: 0 auto;
+            .homeBox2Body > .bodyBox {
+                padding: 12px 24px;
+                .bodyImg{
+                    width: 70%;
+                }
+                .bodyInfoBox{
+                    width: 90%;
+                    margin: 8px auto;
+                    padding: 16px;
+                    .title{ font-size: 24px; }
+                    .body > p{
+                        font-size: 12px;
+                        margin: 12px 0;
+                    }
+                }
+            }
+            .homeBox2Bt{
+                .bt{
+                    width: 100%;
+                    box-shadow:  0px 2px rgb(59, 94, 101);
+                    .btLink{
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+
+        .homeBox3{
+            .titleBox >.title{
+                width: 46px;
+                height: 46px;
+                p{
+                    font-size:  30px;
+                    line-height: 46px;
+                }
+            }
+
+            .infoBox{
+                .date{font-size: 16px;}
+                .news_title{
+                    margin: 12px 0;
+                    font-size: 24px;
+                }
+                .body{
+                    margin: 24px 4px;
+                    font-size: 12px;
+                } 
+                .imgBox{
+                    width: 90%;
+                    width: 100%;
+                }
+            }
+
+            .bt{
+                width: 100%;
+                box-shadow:  0px 2px rgb(59, 94, 101);
+                .btLink{
+                    font-size: 20px;
+                }
+            }
+        }
+    } 
+}
+
+

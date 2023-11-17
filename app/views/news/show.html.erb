@@ -1,0 +1,32 @@
+<%= stylesheet_link_tag 'show', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<div class="pageTitle">
+    <div class="pageTitleJP">
+        <p class="pageTitleJP_p">お知らせ</p>
+        <div class="pageTitleENG"><p class="pageTitleENG_p">ANNOUNCEMENT</p></div>
+    </div>
+</div>
+
+<!--news/show-->
+<div class="show">
+    <div class="titleBox">
+        <div class="infoBox"><p class="body other"><%= @news.created_at.strftime("%Y/%m/%d") %></p></div>
+        <div class="infoBox"><p class="body title"><%= @news.title %></p></div>
+    </div>
+
+    <div class="border"></div>
+
+    <div class="bodyBox infoBox">
+        <div class="bodyBox_inside">
+            <div class="body"><p><%= @news.body %></p></div>
+            <%= attachment_image_tag @news, :image, :class=>"img" %>
+        </div>
+    </div>
+
+    <% if admin_signed_in? %>
+        <div class="btBox">
+            <p class="edit bt"><%= link_to "編集", edit_news_path(@news.id) %></p>
+            <p class="destroy bt"><%= link_to "削除", news_path(@news.id), method: :DELETE %></p>
+        </div>
+    <% end %>
+</div>

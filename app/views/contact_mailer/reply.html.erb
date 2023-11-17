@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    </head>
+
+    <body>
+        <p><%= @contact.name %> 様</p>
+        <br>
+
+        <p>
+            お問い合わせいただき、ありがとうございます。<br>
+            本件に関する回答は以下のとおりです。
+        </p>
+
+        <p><%= @contact.reply_body %></p>
+
+        <p>ご意見いただきましたこと、改めてお礼申し上げます。<br>
+            そのほか、お気づきの点などございましたら、弊社までお知らせいただけますと幸いです。<br>
+            今後とも当サービスをよろしくお願い申し上げます。</p>
+        <br>        
+
+        <p>AiCO 管理人</p>
+
+        <p>------------------------------------------------------------------------------------------------------</p>
+
+        <p>
+            <%= @contact.name %> 様<br>
+            メールアドレス：<%= @contact.email %><br>
+            お問い合わせ日時：<%= @contact.created_at.strftime("%Y/%m/%d") %><br>
+            お問い合わせ項目：<%= @contact.genre_name %><br>
+            お問い合わせ件名：<%= @contact.title %><br>
+            お問い合わせ内容：<%= @contact.body %><br>
+        </p>
+    </body>
+</html>

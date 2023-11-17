@@ -1,43 +1,70 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= stylesheet_link_tag 'form', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+<div class="pageTitle">
+    <div class="pageTitleJP">
+        <p class="pageTitleJP_p">新規登録</p>
+        <div class="pageTitleENG"><p class="pageTitleENG_p">SIGN UP</p></div>
+    </div>
+</div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<!--user/registrations/new-->
+  <div class="form">
+    <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :PATCH }) do |f| %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+      <%= render "user/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <div class="formBox">
+        <p class="formLabel">ニックネーム</p>
+        <%= f.text_field :name, autofocus: true, autocomplete: "ニックネームを入力", :class=>"formInput"  %>
+      </div>
+
+      <div class="formBox">
+        <p class="formLabel">ユーザ名</p>
+        <%= f.text_field :user_name, autocomplete: "ユーザ名", :class=>"formInput"  %>
+      </div>
+
+      <div class="formBox">
+        <p class="formLabel">画像</p>
+        <%= f.file_field :image, :class=>"formInput img"  %>
+      </div>
+
+      <div class="formBox">
+        <p class="formLabel">お住まい</p>
+        <p class="formInput select" >
+          <%= f.select :location, {'会津若松市内': 1, 
+                                  '会津若松市外（福島県内）': 2, 
+                                  '会津若松市外（福島県外）': 3},
+                                  { include_blank: '選択してください'}%>  
+        </p>
+      </div>
+
+      <div class="formBox">
+        <p class="formLabel">あなたについて</p>
+        <%= f.text_area :body, autocomplete: "あなたについて", :class=>"formInput area"  %>
+      </div>
+
+      <div class="formBox">
+        <p class="formLabel">メールアドレス</p>
+        <%= f.email_field :email, autocomplete: "email", :class=>"formInput"  %>
+      </div>
+
+      <div class="formBox">
+          <p class="formLabel">パスワード<br>(変更時のみ)</p>
+          <%= f.password_field :password, autocomplete: "new-password", :class=>"formInput"  %>
+      </div>
+
+      <div class="formBox">
+        <p class="formLabel">パスワード<br>（確認・変更時のみ）</p>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", :class=>"formInput" %>
+      </div>
+
+      <div class="formBox">
+          <p class="formLabel alarm">現在のパスワード<br>（必須）</p>
+          <%= f.password_field :current_password, autocomplete: "new-password", :class=>"formInput" %>
+      </div>
+
+      <div class="bt">
+        <%= f.submit "編集/EDIT" %>
+      </div>
     <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+</div>

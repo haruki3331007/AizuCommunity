@@ -1,33 +1,39 @@
-<--genres/index-->
+<%= stylesheet_link_tag 'index', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<div>
-    <p>ジャンル一覧</p>
+<div class="pageTitle">
+    <div class="pageTitleJP">
+        <p class="pageTitleJP_p">ジャンル</p>
+        <div class="pageTitleENG"><p class="pageTitleENG_p">GENRE</p></div>
+    </div>
 </div>
+<!--genres/index-->
+<div class="index">
 
-<div>
-    <p><%= link_to "新規作成",  new_genre_path %></p>
-</div>
+    <div class="bt">
+        <%= link_to "新規作成",  new_genre_path %>
+    </div>
 
-<div>
-    <table>
-        <tr>
-            <th>id</th>
-            <th>ジャンル名</th>
-            <th>使用回数</th>
-            <th>制作日時</th>
-            <th>edit</th>
-            <th>destroy</th>
-        </tr>
-
-        <% @genres.each do |g| %>
+    <div class="indexBox">
+        <table>
             <tr>
-                <td><%= g.id %></td>
-                <td><%= g.name %></td>
-                <td><%= Post.where(genre: g.id).count %></td>
-                <td><%= g.created_at.strftime("%Y/%m/%d") %></td>
-                <td><%= link_to "edit", edit_genre_path(g.id) %></td>
-                <td><%= link_to "destroy", genre_path(g.id),  method: :delete %></td>
+                <th>id</th>
+                <th>ジャンル名</th>
+                <th>使用回数</th>
+                <th>制作日時</th>
+                <th><br></th>
+                <th><br></th>
             </tr>
-        <% end %>
-    </table>
+
+            <% @genres.each do |g| %>
+                <tr>
+                    <td><%= g.id %></td>
+                    <td><%= g.name %></td>
+                    <td><%= Post.where(genre: g.id).count %></td>
+                    <td><%= g.created_at.strftime("%Y/%m/%d") %></td>
+                    <td><p class="bt edit"><%= link_to "編集", edit_genre_path(g.id) %></p></td>
+                    <td><p class="bt destroy"><%= link_to "削除", genre_path(g.id),  method: :delete%></p></td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
 </div>

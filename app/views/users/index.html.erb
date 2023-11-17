@@ -1,29 +1,35 @@
-<--users/index-->
+<%= stylesheet_link_tag 'index', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<table>
-    <thead>
-        <tr>
-            <th>ユーザID</th>
-            <th>名前</th>
-            <th>ユーザネーム</th>
-            <th>居住地</th>
-            <th>メールアドレス</th>
-            <th>ユーザ編集</th>
-            <th>ユーザ削除</th>
-        <tr>
-    </thead>
+<div class="pageTitle">
+    <div class="pageTitleJP">
+        <p class="pageTitleJP_p">ユーザ一覧</p>
+        <div class="pageTitleENG"><p class="pageTitleENG_p">USER INDEX</p></div>
+    </div>
+</div>
 
-    <tbody>
-        <% @users.each do |u| %>
+<!--users/index-->
+<div class="index">
+    <div class="indexBox"> 
+        <table>
             <tr>
-                <th><%= u.id %></th>
-                <td><%= u.name %></td>
-                <td><%= u.user_name %></td>
-                <td><%= u.location_name %></td>
-                <td><%= u.email %></td>
-                <td><%= link_to "ユーザ編集", edit_user_path(u.id)  %></td>
-                <td><%= link_to "ユーザ削除", user_path(u.id), method: :DELETE, data: {confirm: "削除しますか？"}  %></td>
-            </tr>
-        <% end %>
-    </tbody>
-</table>
+                <th>ID</th>
+                <th>名前</th>
+                <th>居住地</th>
+                <th>ポスト数</th>
+                <th><br></th>
+                <th><br></th>
+            <tr>
+
+            <% @users.each do |u| %>
+                <tr>
+                    <td><%= u.id %></td>
+                    <td><%= u.name %></td>
+                    <td><%= u.location_name %></td>
+                    <td><%= u.posts.count %></td>
+                    <td><p class="bt edit"><%= link_to "詳細", user_path(u.id)%></p></td>
+                    <td><p class="bt"><%= link_to "削除", user_path(u.id), method: :DELETE, data: {confirm: "削除しますか？"} %></p></td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+</div>

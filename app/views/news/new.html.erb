@@ -1,27 +1,30 @@
-<--news/new-->
+<%= stylesheet_link_tag 'form', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<div>
-    <p>Announcement</p>
+<div class="pageTitle">
+    <div class="pageTitleJP">
+        <p class="pageTitleJP_p">お知らせ</p>
+        <div class="pageTitleENG"><p class="pageTitleENG_p">ANNOUNCEMENT</p></div>
+    </div>
 </div>
 
-
-<div>
+<!--news/new-->
+<div class="form">
     <%= form_with model: @new_news, url: news_index_path do |n| %>
-        <div>
-            <p>タイトル</p>
-            <%= n.text_field :title, autofocus: true, placeholder: "--タイトルを入力してください--" %>
+        <div class="formBox">
+            <p class="formLabel">タイトル</p>
+            <%= n.text_field :title, autofocus: true, placeholder: "--タイトル--", :class=>"formInput" %>
         </div>
-        <div>
-            <p>内容</p>
-            <%= n.text_area :body, placeholder: "--内容を入力してください--" %>
+        <div class="formBox">
+            <p class="formLabel">内容</p>
+            <%= n.text_area :body, placeholder: "--内容--", :class=>"formInput area"  %>
         </div>
-        <div>
-            <p>画像</p>
-            <%= n.file_field :image %>
+        <div class="formBox last">
+            <p class="formLabel">画像</p>
+            <%= n.file_field :image, :class=>"formInput img"  %>
         </div>
 
-        <div>
-            <%= n.submit "投稿" %>
+        <div class="bt">
+            <%= n.submit "投稿/POST" %>
         </div>
     <% end %>
 </div>

@@ -69,9 +69,9 @@ ActiveRecord::Schema.define(version: 2023_10_28_083027) do
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "title", null: false
-    t.string "body", null: false
+    t.string "body"
     t.string "image_id"
-    t.integer "genre", null: false
+    t.integer "genre_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -82,9 +82,15 @@ ActiveRecord::Schema.define(version: 2023_10_28_083027) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.string "name", null: false
     t.string "user_name", null: false
-    t.integer "location"
+    t.integer "location", null: false
+    t.string "image_id"
+    t.string "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true

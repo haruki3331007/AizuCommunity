@@ -1,49 +1,41 @@
-<--contacts/index-->
+<%= stylesheet_link_tag 'index', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<div>
-    <p>お問合せ一覧</p>
+<div class="pageTitle">
+    <div class="pageTitleJP">
+        <p class="pageTitleJP_p">お問合せ</p>
+        <div class="pageTitleENG"><p class="pageTitleENG_p">CONTACT</p></div>
+    </div>
 </div>
 
-<table>
-    <thead>
-        <tr>
-            <th>返信済み</th>
-            <th>お問合せID</th>
-            <th>名前</th>
-            <th>登録済み</th>
-            <th>日付</th>
-            <th>ジャンル</th>
-            <th>タイトル</th>
-            <th>ユーザ編集</th>
-            <th>ユーザ削除</th>
-        <tr>
-    </thead>
+<!--contacts/index-->
+<div class="index">
 
-    <tbody>
-        <% @contacts.each do |c| %>
+    <div class="indexBox">
+        <table>
             <tr>
-                <td>
-                    <% if c.reply == true %>
-                        ◯
-                    <% else %>
-                        <br>
-                    <% end %>
-                </td>
-                <td><%= c.id %></td>
-                <td><%= c.name %></td>
-                <td>
-                    <% if User.exists?(email: c.email)%>
-                        ◯
-                    <% else %>
-                        <br>
-                    <% end %>
-                </td>
-                <td><%= c.created_at.strftime("%m/%d") %></td>
-                <td><%= c.genre_name %></td>
-                <td><%= c.title %></td>
-                <td><%= link_to "お問合せ詳細", edit_contact_path(c.id)  %></td>
-                <td><%= link_to "お問合せ削除", contact_path(c.id), method: :DELETE, data: {confirm: "削除しますか？"}  %></td>
-            </tr>
-        <% end %>
-    </tbody>
-</table>
+                <th>返信済</th>
+                <th>日付</th>
+                <th>項目</th>
+                <th>件名</th>
+                <th><br></th>
+            <tr>
+
+            <% @contacts.each do |c| %>
+                <tr>
+                    <td>
+                        <% if c.reply == true %>
+                            ◯
+                        <% else %>
+                            <br>
+                        <% end %>
+                    </td>
+                    <td><%= c.created_at.strftime("%m/%d") %></td>
+                    <td><%= c.genre_name %></td>
+                    <td><%= c.title %></td>
+                    <td><p class="bt edit"><%= link_to "編集", edit_contact_path(c.id)%></p></td>
+                </tr>
+            <% end %>
+        </table>
+        <%= paginate @contacts %>
+    </div>
+<div>

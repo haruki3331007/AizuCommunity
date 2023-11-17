@@ -1,0 +1,106 @@
+.usersBox{
+    width:90%;        
+    display: flex;
+    flex-wrap: wrap;
+    &.user{
+        margin-top: 40px;
+    }
+
+    .imgBox{
+        height: 320px;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        background-color: rgb(214, 164, 155);
+        margin:  auto;
+        overflow: hidden;
+        position: relative;
+        .img{ 
+            height: 100%;
+            align-items: center;
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    .usersBodyBox{
+        width: 60%;
+        height: fit-content;
+        margin:  auto;
+        .title{
+            margin: 8px 0;
+            .name{
+                font-size: 40px;
+                text-align: center;
+            }
+            .userName{
+                font-size: 24px;
+                text-align: center;
+            }
+        }
+        .body{
+            width: 100%;
+            height: fit-content;
+            padding: 8px 0;
+            p{
+                color: rgb(128, 128, 128);
+                margin: 16px;
+            }
+            .box{
+                display: flex;
+                .body1{
+                    width: 120px;
+                    min-width: fit-content;
+                }
+                .body2{
+                    width: 100%;
+                    &.bt{
+                        width: fit-content;
+                        color: white;
+                        padding: 8px 32px;
+                        margin: auto;
+                    }
+                    .img{
+                        width: 30px;
+                        margin-right: 8px; 
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 820px) {
+        width:95%; 
+        display: block;
+        padding: 16px 0;
+        &.user{
+            margin-top: 28px;
+        }
+        .imgBox{
+            height: 65vw;
+        }
+        .usersBodyBox{
+            width: 100%;
+            .title{
+                width: 100%;
+                margin: 16px 0;
+                .name{ font-size: 32px; }
+            }
+            .body{
+                .box{
+                    .body1{ 
+                        width: 120px;
+                        margin-left: 12px;
+                        margin-right: 0;
+                    }
+                    .body2{
+                        &.bt{
+                            width: 90%;
+                            font-size: 14px;
+                            padding: 8px 16px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

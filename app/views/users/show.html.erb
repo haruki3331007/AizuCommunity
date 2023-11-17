@@ -1,20 +1,58 @@
-<--users/show-->
+<%= stylesheet_link_tag 'usersShow', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= stylesheet_link_tag 'userShow', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<div>
-    <p>アカウント</p>
+<!--users/show-->
+<div class="usersBox infoBox user">
+    <% if @user.image_id != nil %>
+        <div class="imgBox">
+            <%= attachment_image_tag @user, :image, :class=>"img" %>
+        </div>
+    <% else %>
+        <div class="imgBox">
+            <%= image_tag "userUnknown.png", :class=>"img" %>
+        </div>
+    <% end %>
+    <div class="usersBodyBox">
+        <div class="title">
+            <p class="name"><%= @user.name %></p>
+            <p class="userName"><%= @user.user_name %></p>
+        </div>
+        <div class="body">
+            <div class="box">
+                <p class="body1">お住まい</p>
+                <p class="body2"><%= @user.location_name %></p>
+            </div>
+            <div class="box">
+                <p class="body1">私について</p>
+                <p class="body2"><%= @user.body %></p>
+            </div>
+            <div class="box">
+                <p class="body1">投稿一覧</p>
+                <p class="body2 bt"><%= link_to "投稿を見に行く ▶︎", posts_path(:user_id => @user.id) %></p>
+            </div>
+            <div class="box">
+                <p class="body1">ためになった</p>
+                <p class="body2"><%= image_tag "heart_active.png", :class=>"img"%> +<%= @user.posts.inject(0) { |sum, post| sum + post.likes.count }%></p>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div>
-    <p>1</p>
-    <p><%= @user.name %></p>
-    <p><%= @user.user_name %></p>
-    <p><%= @user.email %></p>
-    <p><%= @user.location_name %></p>
-</div>
+<div class="userShow">
+    <% if user_signed_in? && @user.id == current_user.id || admin_signed_in? %>
+        <p class="bt destroy">
+            <%= link_to "アカウント削除/DELETE ACCOUNT", user_path(@user.id), 
+                                                        method: :DELETE, 
+                                                        data: {confirm: "削除しますか？"} %>
+        </p>
+    <% end %>
 
-<div>
-    <p>2</p>
-    <p><%= link_to "アカウントを編集", edit_user_path(@user.id) %></p>
-    <p><% if @user.id == current_user.id %><%= link_to "ログアウト", destroy_user_session_path, method: :DELETE %><% end %></p>
-    <p><%= link_to "アカウントを削除", user_path(@user.id), method: :DELETE, data: {confirm: "削除しますか？"} %></p>
+    <% if user_signed_in? && @user.id == current_user.id %>
+            <%= link_to  edit_user_registration_path(@user.id) do%> 
+                <p class="bt edit">ユーザ情報編集<br>EDIT USER</p>
+            <%end%>
+            <%= link_to  destroy_user_session_path, method: :DELETE do %>
+                <p class="bt">ログアウト<br>SIGN OUT</p>
+            <%end%>
+    <% end %>
 </div>

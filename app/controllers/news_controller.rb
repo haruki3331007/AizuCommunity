@@ -1,8 +1,12 @@
 class NewsController < ApplicationController
-    before_action :correct_admin, except: [:index]
+    before_action :correct_admin, except: [:index, :show]
 
     def index
-        @news = News.all
+        @news = News.page(params[:page]).per(5).reverse_order
+    end
+
+    def show
+        @news = News.find(params[:id])
     end
     
     def new
@@ -12,7 +16,7 @@ class NewsController < ApplicationController
     def create
         news = News.new(news_params)
         if news.save
-            redirect_to news_index_path
+            redirect_to news_path(news.id)
         else
             @new_news = news
             render "new"
@@ -26,7 +30,7 @@ class NewsController < ApplicationController
     def update
         news = News.find(params[:id])
         if news.update(news_params)
-            redirect_to news_index_path
+            redirect_to news_path(news.id)
         else
             @edit_news = news
             render "edit"

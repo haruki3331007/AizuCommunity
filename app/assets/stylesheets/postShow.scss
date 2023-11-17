@@ -1,0 +1,129 @@
+.show{
+    .heartBox, .commntBox{
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        margin: 12px 0;
+
+        .title{
+            font-size: 20px;
+            width: 24%;
+            min-width: fit-content;
+            margin: auto 0;
+        }
+
+        .heart{
+            width: 40px;
+            margin: 0 4px 0 16px;
+            .img{ width: 100%; }
+        }
+        .count{
+            margin-top: auto;
+        }
+
+        .commentForm{
+            width: 75%;
+            height: fit-content;
+            display: flex;
+
+            .form{
+                width: 100%;
+                margin: 0 4px 0 16px;
+                border: 1px solid rgb(128, 128, 128);
+                border-radius: 5px;
+            }
+            .bt{
+                padding: 4px;
+            }
+        }
+    }
+    
+
+    .commentAllBox{
+        width: 90%;
+        margin: 0 auto;
+        .commentEachBox{
+            display: flex;
+            margin: 16px 0;
+            .user{
+                min-width: fit-content;
+                margin-bottom: auto; 
+            }
+            .comment{
+                width: fit-content; max-width: 100%;
+                margin: 0 8px;
+            }
+            .commentHeartBox{
+                min-width: fit-content;
+                display: flex;
+                margin-left: auto;
+                .heart{
+                    width: 24px;
+                    min-width: 24px;
+                    margin: 0;
+                    .img{ width: 100%; }
+                }
+                .count{
+                    min-width: fit-content;
+                    margin:0 8px auto 4px;
+                }
+                .btBox{
+                    margin: 0 0 auto 0;
+                    .bt{
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .heartBox, .commntBox{   
+            .title{
+                font-size: 16px;
+                width: fit-content;
+            }
+            .heart{ width: 36px; }  
+            
+            .commentForm{
+                width: 100%;
+                .form{
+                    width: 100%;
+                    margin: 0 4px 0 8px;
+                    border: 1px solid rgb(128, 128, 128);
+                    border-radius: 5px;
+                }
+                .bt{ font-size: 12px; }
+            }
+        }
+        
+    
+        .commentAllBox{
+            width: 100%;
+            .commentEachBox{
+                display: block;
+                margin: 24px 0;
+                .user{ margin: 8px 0; }
+                .comment{ margin: 4px 12px; }
+                .commentHeartBox{
+                    width: fit-content;
+                    margin-left: auto;
+
+                    .heart{
+                        width: 26px;
+                        height: fit-content;
+                        margin: auto 0;
+                    }
+                    .count{
+                        height: fit-content;
+                        margin:auto 8px auto 4px;
+                    }
+                    .btBox{
+                        margin: auto 0;
+                    }
+                }
+            }
+        }
+    }
+}
+

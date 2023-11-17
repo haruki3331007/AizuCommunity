@@ -1,0 +1,100 @@
+.form{
+    width: 100%;
+    padding: 24px 16%;
+    margin-top: 80px;
+
+    .formBox{
+        height: fit-content;
+        height: fit-content;
+        display: flex;
+        margin-bottom: 80px;
+
+        .formLabel{
+            width: 24%;
+            height: fit-content;
+            padding: 8px;
+            color: rgb(128, 128, 128);
+            font-size: 20px;
+            background-color: rgb(236,236,236);
+            text-align: center;
+            border-radius: 8px;
+            margin-right: 10%;
+            &.alarm{
+                background-color: rgb(214, 164, 155);
+                color: white;
+            }
+        }
+        .formInput{
+            width: 64%;
+            border: 1px solid rgb(128, 128, 128);
+            border-radius: 8px;
+
+            &.area{
+                height: 160px;
+            }
+            &.img{
+                width:fit-content;
+                border: none;
+            }
+            &.select{
+                width: fit-content;
+                height: fit-content;
+                padding: 2px;
+                text-align: center;
+                color: rgb(128, 128, 128);
+            }
+        }
+        .formDone{
+            height: fit-content;
+            font-size: 20px;
+            color: rgb(128, 128, 128);
+            margin: auto 0;
+        }
+    }
+
+    .bt{
+        width: fit-content;
+        height: fit-content;
+        padding: 8px 24px;
+        font-size: 20px;
+        margin-left: auto;
+    }
+
+    @media screen and (max-width: 480px) {
+        padding: 0 8%;
+        margin-top: 50px;
+        .formBox{
+            display: block;
+            margin-bottom: 16px;
+            .formLabel{
+                width: 100%;
+                font-size: 16px;
+                margin-right: 0;
+            }
+            .formInput{
+                width: 100%;
+                height: 36px;
+                margin: 16px auto;
+
+                &.area{
+                    width: 100%;
+                }
+            }
+            .formDone{
+                font-size: 18px;
+                margin: 8px 0 auto 8px;
+            }
+
+        }
+        .bt{
+            margin-left: 0;
+            width: 100%;
+            font-size: 16px;
+        }
+    }
+}
+.flash{
+    width: fit-content;
+    margin: 0 auto 32px auto;
+    color: firebrick;
+}

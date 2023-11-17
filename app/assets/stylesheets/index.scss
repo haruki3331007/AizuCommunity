@@ -1,0 +1,66 @@
+.index{
+    .bt{
+        width: fit-content;
+        height: fit-content;
+        padding: 12px 24px;
+        font-size: 20px;
+        margin: auto;
+    }
+
+    .indexBox{
+        width: 80%; min-width: fit-content;
+        height: fit-content;
+        margin: 32px auto;
+        border-radius: 24px;
+        background-color: rgb(236, 236, 236);
+        padding: 28px 32px;
+        table{
+            width: 100%;
+            tr{
+                width: 100%;
+                height: fit-content;
+                th, td{
+                    min-width: 40px;
+                    color: rgb(128, 128, 128);
+                    padding: 16px 0;
+                    text-align: center;
+                    vertical-align:middle;
+                    .bt{
+                        width: fit-content;
+                        height: fit-content;
+                        padding: 8px 18px;
+                        margin:0 auto;
+                    }
+                }
+                th{
+                    border-bottom: 1px solid rgb(128, 128, 128);
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .bt{
+            width: 100%;
+            padding: 8px 12px;
+            font-size: 16px;
+        }
+        .indexBox{
+            width: 100%;
+            padding: 24px 8px;
+            table{
+                tr { 
+                    th, td{ 
+                        font-size: 12px;
+                        .bt{
+                            font-size: 10px;
+                            margin: auto;
+                            padding: 4px 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}

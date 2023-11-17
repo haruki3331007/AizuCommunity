@@ -1,0 +1,35 @@
+footer{
+    width: 100%;
+    height: fit-content;
+    background-color: rgb(214, 164, 155);
+
+    margin-top: 40px;
+    padding: 24px 48px;
+
+    .footer_1{
+        display: flex;
+
+        .footer_box{
+            width: fit-content;
+            margin: 0 5%;
+            p{
+                margin: 20px 0;
+                color: white;
+                font-size: 18px;
+                @media screen and (max-width: 480px) {
+                    font-size: 12px;
+                }
+            }
+            .posts{
+                margin: 6px 0 0 32px;
+                p{
+                    margin: 14px 0;
+                }
+            }
+        }
+    }
+    .footer_2{
+        width: fit-content;
+        margin: 8px auto 0 auto;
+    }
+}

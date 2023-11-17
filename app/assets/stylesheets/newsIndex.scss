@@ -1,0 +1,85 @@
+// Place all the styles related to the news controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.newsIndex{
+    color: rgb(128, 128, 128);
+    .bt{
+        width: fit-content;
+        font-size: 20px;
+        padding: 16px 24px;
+        margin: 0 auto; margin-bottom: 16px;
+    }
+
+    .newsBodyBox{
+        width: 100%;
+        padding: 8px 24px;
+
+        .eachBox{
+            width: 90%;
+            .dateBox{
+                width: 100%;
+                display: flex;
+                .date{
+                    font-size: 20px;
+                    margin: auto 0;
+                }
+                .btBox{
+                    width: fit-content;
+                    margin-left: auto;
+                    display: flex;
+                    .bt{
+                        padding: 8px 24px;
+                        margin: 0 4px;
+                    }
+                }
+            }
+
+            .titleBox{
+                .title{
+                    width: fit-content;
+                    margin: 8px auto;
+                    font-size: 40px;
+                    text-align: center;
+                }
+            }
+            
+        }
+    }
+
+    @media screen and (max-width: 820px) {
+        .bt{
+            width: 100%;
+            font-size: 16px;
+            padding: 8px 0;
+        }
+
+        .newsBodyBox{
+            padding: 8px 4px;
+            .eachBox{
+                width: 100%;
+                padding: 16px 24px;
+                .dateBox{
+                    .date{ font-size: 16px; }
+                    .btBox{
+                        width: fit-content;
+                        margin-left: auto;
+                        display: flex;
+                        .bt{
+                            font-size: 12px;
+                            padding: 4px 12px;
+                        }
+                    }
+                }
+
+                .titleBox{
+                    .title{
+                        margin: 8px auto;
+                        font-size: 24px;
+                    }
+                }
+                
+            }
+        }
+    }
+}

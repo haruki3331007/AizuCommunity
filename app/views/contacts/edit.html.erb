@@ -1,62 +1,81 @@
-<--contacts/show-->
+<%= stylesheet_link_tag 'form', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<div>
-    <p>お問合せ #<%= @contact.id %><% if @contact.reply == true %> （返信済み）<% end %></p>
+<div class="pageTitle">
+    <div class="pageTitleJP">
+        <p class="pageTitleJP_p">お問合せ</p>
+        <div class="pageTitleENG"><p class="pageTitleENG_p">CONTACT</p></div>
+    </div>
 </div>
+<!--contacts/edit-->
 
-<%= form_with model: @contact, url: contact_path(@contact.id), method: :PATCH do |c| %>
-    <table>
-            <tr>
-                <th>お問合せID</th>
-                <td><%= @contact.id %></td>
-            </tr>
-            <tr>
-                <th>名前</th>
-                <td><%= @contact.name %></td>
+    <div class="form">
+        <%= form_with model: @contact, url: contact_path(@contact.id), method: :PATCH do |c| %>
+            <div class="formBox">
+                <p class="formLabel">お問合せID</p>
+                <p class="formDone"><%= @contact.id %></p>
+            </div>
+
+            <div class="formBox">
+                <p class="formLabel">名前</p>
+                <p class="formDone">
+                    <% if User.exists?(email: @contact.email)%>
+                        <%= link_to @contact.name, user_path(User.find_by(email: @contact.email).id) %>
+                    <% else %>
+                        <%= @contact.name %>
+                    <% end %>
+                </p>
                 <%= c.hidden_field :name, :value => @contact.name %>
-            </tr>
-            <tr>
-                <th>メールアドレス</th>
-                <td><%= @contact.email %></td>
+            </div>
+
+            <div class="formBox">
+                <p class="formLabel">メールアドレス</p>
+                <p class="formDone"><%= @contact.email %></p>
                 <%= c.hidden_field :email, :value => @contact.email %>
-            </tr>
-            <tr>
-                <th>登録済み</th>
-                <td>
+            </div>
+
+            <div class="formBox">
+                <p class="formLabel">登録済み</p>
+                <p class="formDone">
                     <% if User.exists?(email: @contact.email)%>
                         ◯
                     <% else %>
                         <br>
                     <% end %>
-                </td>
-            </tr>
-            <tr>
-                <th>日付</th>
-                <td><%= @contact.created_at.strftime("20%y/%m/%d") %></td>
-            </tr>
-            <tr>
-                <th>ジャンル</th>
-                <td><%= @contact.genre_name %></td>
+                </p>
+            </div>
+
+            <div class="formBox">
+                <p class="formLabel">日付</p>
+                <p class="formDone"><%= @contact.created_at.strftime("20%y/%m/%d") %></p>
+            </div>
+
+            <div class="formBox">
+                <p class="formLabel">項目</p>
+                <p class="formDone"><%= @contact.genre_name %></p>
                 <%= c.hidden_field :genre, :value => @contact.genre %>
-            </tr>   
-            <tr>
-                <th>タイトル</th>
-                <td><%= @contact.title %></td>
+            </div>
+
+            <div class="formBox">
+                <p class="formLabel">件名</p>
+                <p class="formDone"><%= @contact.title %></p>
                 <%= c.hidden_field :title, :value => @contact.title %>
-            </tr>
-            <tr>
-                <th>本文</th>
-                <td><%= @contact.body %></td>
+            </div>
+
+            <div class="formBox">
+                <p class="formLabel">お問合せ内容</p>
+                <p class="formDone"><%= @contact.body %></p>
                 <%= c.hidden_field :body, :value => @contact.body %>
-            </tr>    
-            <tr>
-                <th>ユーザ削除</th>
-                <td><%= link_to "お問合せ削除", contact_path(@contact.id), method: :DELETE, data: {confirm: "削除しますか？"}  %></td>
-            </tr>  
-    </table>
+            </div>
 
-    <%= c.hidden_field :reply, :value => true %>
-    <%= c.text_area :reply_body %>
+            <div class="formBox">
+                <p class="formLabel">お問合せ対応</p>
+                <%= c.text_area :reply_body, autocomplete: "--内容--", :class=>"formInput area"  %>
+                <%= c.hidden_field :reply, :value => true %>
+            </div>
 
-    <%= c.submit "返信を送信する" %>
-<% end %>
+            <div class="bt">
+                <%= c.submit "送信/SUBMIT", data: {confirm: "送信しますか？"} %>
+            </div>
+        <% end %>
+    </div>
+</div>

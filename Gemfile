@@ -59,3 +59,11 @@ gem 'devise'
 
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+
+
+# page nation
+gem 'kaminari'
+gem 'kaminari-bootstrap'
+gem 'rails-i18n'
+
+gem 'dotenv-rails'

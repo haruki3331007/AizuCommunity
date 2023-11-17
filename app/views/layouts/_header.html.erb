@@ -1,29 +1,63 @@
-<--layouts/header-->
+<!--layouts/header-->
+<%= stylesheet_link_tag 'header', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<div>
-    <p>1</p>
-    <% if user_signed_in?%>
-        <p><%= link_to "ログアウト", destroy_user_session_path, method: :DELETE %></p>
-    <% elsif admin_signed_in?%>
-        <p><%= link_to "管理人 ログアウト", destroy_admin_session_path, method: :DELETE %></p>
-    <% else %>
-        <p><%= link_to "新規登録", new_user_registration_path %></p>
-        <p><%= link_to "ログイン", new_user_session_path %></p>
+<!--header-->
+<div class="headerBox1">
+    <%= link_to root_path, :class=>"iconBox" do %>
+        <%= image_tag "icon.png", class:"icon" %>
     <% end %>
+
+    <div class="userBox">
+        <% if user_signed_in?%>
+            <div class="bt">
+                <%= link_to "ユーザページ", user_path(current_user.id) %>
+            </div>
+            <div class="bt">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :DELETE %>
+            </div>
+        <% elsif admin_signed_in?%>
+            <div class="bt">
+                <%= link_to "ユーザ一覧", users_path %>
+            </div>
+            <div class="bt">
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :DELETE %>
+            </div>
+        <% else %>
+            <div class="bt">
+                <%= link_to "新規登録", new_user_registration_path %>
+            </div>
+            <div class="bt">
+                <%= link_to "ログイン", new_user_session_path %>
+            </div>
+        <% end %>
+    </div>
 </div>
 
-<div>
-    <p><%= link_to "新着情報", news_index_path %></p>
-    <p><%= link_to "投稿一覧", posts_path %></p>
+<div class="headerBox2">
+    <div class="bt">
+        <%= link_to "ホーム", root_path, :class=> "btLink" %>
+    </div>
+    <div class="bt">
+        <%= link_to "探す", posts_path, :class=> "btLink" %>
+    </div>
+    <div class="bt">
+        <%= link_to "お知らせ", news_index_path, :class=> "btLink" %>
+    </div>
+    <div class="bt">
+        <% if admin_signed_in?%>
+            <%= link_to "お問合せ一覧", contacts_path, :class=> "btLink" %>
+        <% else %>
+            <%= link_to "お問合せ", new_contact_path, :class=> "btLink" %>
+        <% end %>
+    </div>
     <% if admin_signed_in?%>
-        <p><%= link_to "コンタクト一覧", contacts_path %></p>
-    <% else %>
-        <p><%= link_to "コンタクト", new_contact_path %></p>
+        <div class="bt">
+            <%= link_to "ジャンル一覧", genres_path, :class=> "btLink" %>
+        </div>
     <% end %>
-    <p><%= link_to "About Us", aboutUs_path %></p>
-    <% if user_signed_in? %>
-        <p><%= link_to "ユーザページ", user_path(current_user.id) %></p>
-    <% elsif admin_signed_in? %>
-        <p><%= link_to "ユーザ一覧", users_path %></p>
-    <% end %>
+    <div class="bt">
+        <%= link_to "サイトについて", aboutUs_path, :class=> "btLink" %>
+    </div>
 </div>
+
+<!--header-->

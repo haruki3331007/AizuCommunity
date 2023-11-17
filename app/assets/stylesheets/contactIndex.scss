@@ -1,0 +1,56 @@
+// Place all the styles related to the Genres controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.contactIndex{
+    .bt{
+        width: fit-content;
+        padding: 16px;
+        margin: 0 auto; margin-bottom: 16px;
+        font-size: 24px;
+        @media screen and (max-width: 480px) {
+            width: 100%;
+            font-size: 16px;
+            text-align: center;
+        }
+    }
+
+    .contactIndex_1{
+        width: 80%;
+        min-width: fit-content;
+        height: fit-content;
+        margin: 32px auto;
+        background-color: rgb(236, 236, 236);
+        border-radius: 24px;
+        padding: 32px;
+
+        table{
+            width: 100%;
+            height: fit-content;
+
+            tr{
+                width: 100%;
+                height: fit-content;
+                th, td{
+                    min-width: 40px;
+                    font-size: 20px;
+                    color: rgb(128, 128, 128);
+                    padding: 16px 0;
+                    text-align: center;
+                }
+                th{
+                    border-bottom: 1px solid rgb(128, 128, 128);
+                }
+                .bt{
+                    font-size: 20px;
+                    padding: 12px;
+                    @media screen and (max-width: 480px) {
+                        width: 20px;
+                        font-size: 16px;
+                        padding: 2px;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}

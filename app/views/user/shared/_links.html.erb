@@ -1,7 +1,11 @@
-<%- if controller_name != 'sessions' %>
-  ユーザー登録がお済みの方 <%= link_to "ログイン", new_session_path(resource_name) %><br />
-<% end %>
+<%= stylesheet_link_tag 'userSign', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  ユーザー登録がまだお済みでない方 <%= link_to "登録", new_user_registration_path(resource_name) %><br />
-<% end %>
+<div class="userSign">
+  <%- if controller_name != 'sessions' %>
+    <p>ユーザー登録がお済みの方</p><div class="bt"><%= link_to "ログイン", new_session_path(resource_name) %></div>
+  <% end %>
+
+  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+    <p>ユーザー登録がまだお済みでない方</p> <div class="bt"><%= link_to "新規登録", new_user_registration_path %></div>
+  <% end %>
+</div>

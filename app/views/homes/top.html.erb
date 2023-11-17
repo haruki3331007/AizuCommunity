@@ -1,25 +1,90 @@
-<--home/top-->
+<%= stylesheet_link_tag 'homes', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<div>
-    <p>1</p>
-    <p>タイトル</p>
-    <p>サイトの説明</p>
-    <p>画像</p>
-</div>
+<!--home/top-->
 
-<div>
-    <p>2</p>
-    <p>投稿一覧</p>
-    <p>ニュース</p>
-    <p>お問合せ</p>
-</div>
+<div class="home">
+    <%= image_tag "home.png", class:"homeImg" %>
 
-<div>
-    <p>3</p>
-    <p>最新ニュース</p>
-    <div>
-        <p>日付</p>
-        <p>タイトル</p>
-        <p>内容</p>
+    <div class="homeBox1">
+        <div class="infoBox">
+            <div class="title">会津若松市の情報交換へ</div>
+            <div class="body">
+                <p>会津若松市の魅力を知りたい、発信したいとお考えですか？</p>
+                <p>皆さんの好奇心と知識と経験を発信し</p>
+                <p>次の人に繋げたいとお考えですか？</p>
+                <p>あなたが求めている会津若松市を</p>
+                <p>多くの仲間と共に探してみましょう。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="homeBox2">
+        <div class="homeBox2Body">
+            <div class="bodyBox"> 
+                <%= image_tag "home1.png", class:"bodyImg" %>
+
+                <div class="bodyInfoBox">
+                    <div class="title">知る</div>
+                    <div class="body">
+                        <p>知らない情報を質問してみよう。</p>
+                        <p>みんなが質問に答えてくれるよ。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bodyBox"> 
+                <%= image_tag "home2.png", class:"bodyImg" %>
+
+                <div class="bodyInfoBox">
+                    <div class="title">体験する</div>
+                    <div class="body">
+                        <p>みんなに教えてもらった情報を元に</p>
+                        <p>お出かけしてみよう。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bodyBox"> 
+                <%= image_tag "home3.png", class:"bodyImg" %>
+
+                <div class="bodyInfoBox">
+                    <div class="title">共有する</div>
+                    <div class="body">
+                        <p>体験したことをみんなに共有しよう。</p>
+                        <p>その情報が誰かの役に立つかも!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="homeBox2Bt">
+            <div class="bt">
+                <%= link_to "情報を探す", posts_path, :class=>"btLink" %>
+            </div>
+        </div>
+    </div>
+
+    <div class="homeBox3">
+        <div class="titleBox">
+            <div class="title"><p>新</p></div>
+            <div class="title"><p>着</p></div>
+            <div class="title"><p>情</p></div>
+            <div class="title"><p>報</p></div>
+        </div>
+
+        <div class="infoBox">
+            <% if @news!= nil %>
+                <p class="date"><%= @news.created_at.strftime("%Y/%m/%d") %></p>
+                <p class="news_title"><%= @news.title %></p>
+                <p class="body"><%= @news.body %></p>
+                <p class="imgBox"><%= attachment_image_tag @news, :image, :class=>"img" %></p>
+            <% else %>
+                <p class="body">新着ニュースはありません。</p>
+            <% end %>
+        </div>
+
+        <div class="bt">
+                <%= link_to "他のお知らせ", news_index_path, :class=>"btLink" %>
+        </div>
     </div>
 </div>

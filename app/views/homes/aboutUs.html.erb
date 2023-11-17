@@ -1,17 +1,53 @@
-<--home/aboutUs-->
+<%= stylesheet_link_tag 'aboutUs', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= stylesheet_link_tag 'usersShow', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<div>
-    <p>About Us</p>
+
+<div class="pageTitle">
+    <div class="pageTitleJP">
+        <p class="pageTitleJP_p">サイトについて</p>
+        <div class="pageTitleENG"><p class="pageTitleENG_p">ABOUT US</p></div>
+    </div>
 </div>
 
-<div>
-    <p>管理人の概要</p>
-    <%= image_tag "admin_icon.png"%>
-    <p>HAルKI</p>
-    <p>会津大学在籍。</p>
+<!--home/aboutUs-->
+<div class="usersBox infoBox">
+    <div class="imgBox">
+        <%= image_tag "icon.png", :class=>"img"%>
+    </div>
+    <div class="usersBodyBox">
+        <div class="title"><p class="name">PARUCO</p></div>
+        <div class="body">
+            <p>
+                会津大学在籍。
+            </p>
+            <p>
+                一度東京に住んだものの会津若松市が恋しくなり、大学進学を機に戻ってきた。
+                会津若松市には良いものがたくさんあるものの、それらを知るチャンスが少ないと思いこのサイトの制作を決定。
+            </p>
+            <p>
+                好きなものは猫と食べること。音楽を聴くことも好きで、暇があれば聞いている。
+                現在は留学中で日本の食べ物が恋しい一方で、パン食にハマってしまい、朝の7時に焼きたてのパンを買いに行くことが趣味になっている。
+            </p>
+        </div>
+    </div>
 </div>
 
+<div class="aboutUsBox infoBox">
+    <p class="title">AiCOについて</p>
+    <div class="body">
+        <p>
+            このサイトは会津若松市の魅力を知りたい、<br>
+            発信したいと考える全ての人のために作られました。
+        </p>           
+        <p>
+            会津若松市の情報を交換することによる<br>
+            市内外の人々の交流、<br>
+            そして地域活性化を目的としています。
+        </p> 
+        <p>
+            あなたが求める会津若松市はどんな姿ですか？<br>
+            このサイトを通じて<br>
+            多くの仲間と共に探してみましょう。
+        </p> 
+    </div>
 <div>
-    <p>サイトの概要</p>
-    <p>このサイトは会津若松市のコミュニティです。</p>
-</div>

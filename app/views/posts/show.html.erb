@@ -1,0 +1,114 @@
+<%= stylesheet_link_tag 'show', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= stylesheet_link_tag 'postShow', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<div class="pageTitle">
+    <div class="pageTitleJP">
+        <p class="pageTitleJP_p">投稿</p>
+        <div class="pageTitleENG"><p class="pageTitleENG_p">POST</p></div>
+    </div>
+</div>
+
+<!--post/show-->
+<div class="show">
+    <div class="titleBox">
+        <div class="infoBox"><p class="other body" <% if user_signed_in? && @post.likes.exists?(user_id: current_user.id)%> style="background-color: rgb(214, 164, 155); color: white;"<% end %>><%= @post.created_at.strftime("%Y/%m/%d")%></p></div>
+        <div class="infoBox"><p class="title body" <% if user_signed_in? && @post.likes.exists?(user_id: current_user.id)%>style="background-color: rgb(214, 164, 155); color: rgb(71, 71, 71);"<% end %>><%= @post.title %></p></div>
+        <div class="infoBox"><p class="other body" <% if user_signed_in? && @post.likes.exists?(user_id: current_user.id)%>style="background-color: rgb(214, 164, 155); color: white;"<% end %>><%= link_to @post.user.name, user_path(@post.user.id) %></p></div>
+        <div class="infoBox"><p class="other body" <% if user_signed_in? && @post.likes.exists?(user_id: current_user.id)%>style="background-color: rgb(214, 164, 155); color: white;"<% end %>>-- <%= link_to @post.genre.name, posts_path(:genre=>@post.genre.id) %> ---</p></div>
+    </div>
+
+    <div class="border"></div>
+
+    <div class="bodyBox infoBox" <% if user_signed_in? && @post.likes.exists?(user_id: current_user.id)%> style="background-color: rgb(214, 164, 155);" <% end %>>
+        <div class="bodyBox_inside">
+            <p class="body"><%= @post.body %></p>
+            <%= attachment_image_tag @post, :image, :class=>"img" %>
+        </div>
+    </div>
+
+    <div class="btBox">
+        <% if user_signed_in? && @post.user.id == current_user.id%>
+            <p class="edit bt"><%= link_to "編集/EDIT", edit_post_path(@post.id) %></p>
+        <% end %>
+        <% if admin_signed_in? || ( user_signed_in? && @post.user.id == current_user.id )%>
+            <p class="destroy bt"> <%= link_to "削除/DELETE", post_path(@post.id), method: :DELETE, data: {confirm: "削除しますか？"} %></p>
+        <% end %>
+    </div>
+
+    <div class="border"></div>
+
+    <div class="heartBox">
+        <p class="title">ためになった<p>
+
+        <div class="heart">
+            <% if user_signed_in? %>
+                <% if @post.likes.exists?(user_id: current_user.id)%>
+                    <%= link_to like_path(post_id: @post.id), method: :DELETE do %>
+                        <%= image_tag "heart_active.png", :class=>"img"%>
+                    <% end %>
+                <% else %>
+                    <%= link_to like_path(post_id: @post.id), method: :POST do %>
+                        <%= image_tag "heart_inactive.png", :class=>"img"%>
+                    <% end %>
+                <% end %>
+            <% else %>
+                <%= link_to new_user_session_path do %>
+                    <%= image_tag "heart_inactive.png", :class=>"img"%>
+                <% end %>
+            <% end %>
+        </div>
+
+        <p class="count">+<%= @post.likes.count %><p>
+    </div>
+
+    <% if user_signed_in? %>
+        <div class="commntBox">
+            <p class="title">コメント</p>
+            <%= form_with model: @post.comments, url: comments_path, :class=>"commentForm" do |c| %>
+                <%= c.text_field :body, autofocus: true, nil: false,  :class=>"form" %>
+                <%= c.hidden_field :post_id, :value => @post.id %>
+                <%= c.hidden_field :user_id, :value => current_user.id %>
+                <div class="bt"><%= c.submit "送信/SEND" %></div>
+            <% end %>
+        </div>
+    <% end %>
+
+    <div class="border"></div>
+
+    <div class="commentAllBox">
+        <% @post.comments.all.reverse_order.each  do |c| %>
+            <div class="commentEachBox">
+                <p class="user"><%= link_to c.user.user_name+" ▶︎", user_path(c.user.id) %></p>
+                <p class="comment"><%= c.body %></p>
+
+                <div class="commentHeartBox">
+                    <div class="heart">
+                        <% if user_signed_in? %>
+                            <% if c.likes.exists?(user_id: current_user.id)%>
+                                <%= link_to like_path(comment_id: c.id, post_id: nil), method: :DELETE do %>
+                                    <%= image_tag "heart_active.png", :class=>"img"%>
+                                <% end %>
+                            <% else %>
+                                <%= link_to like_path(comment_id: c.id, post_id: nil), method: :post do %>
+                                    <%= image_tag "heart_inactive.png", :class=>"img"%>
+                                <% end %>
+                            <% end %>
+                        <% else %>
+                            <%= link_to new_user_session_path do %>
+                                <%= image_tag "heart_inactive.png", :class=>"img"%>
+                            <% end %>
+                        <% end %>
+                    </div>
+                    <p class="count">+<%= c.likes.count %></p>
+
+                    <div class="btBox">
+                        <% if user_signed_in? && @post.user.id == current_user.id || admin_signed_in? %>
+                            <div class="bt destroy"><%= link_to "削除", comment_path(c.id), method: :DELETE, data: {confirm: "コメントを削除しますか？"} %></div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+
+</div>

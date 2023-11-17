@@ -1,17 +1,23 @@
-<--genres/edit-->
+<%= stylesheet_link_tag 'form', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<div>
-    <p>ジャンル 編集</p>
+<div class="pageTitle">
+    <div class="pageTitleJP">
+        <p class="pageTitleJP_p">ジャンル</p>
+        <div class="pageTitleENG"><p class="pageTitleENG_p">GENRE</p></div>
+    </div>
 </div>
 
-<div>
+<!--genres/new-->
+<div class="form">
     <%= form_with model: @edit_genre, url: genre_path, method: :PATCH do |g| %>
-        <div>
-            <p>ジャンル名</p>
-            <%= g.text_field :name, autofocus: true, placeholder: "--ジャンル名を入力してください--" %>
+        <%= render 'layouts/error', model: g.object %>
+
+        <div class="formBox">
+            <p class="formLabel">ジャンル名</p>
+            <%= g.text_field :name, autofocus: true, placeholder: "--ジャンル名--", :class=>"formInput"  %>
         </div>
 
-        <div>
+        <div class="bt">
             <%= g.submit "編集" %>
         </div>
     <% end %>

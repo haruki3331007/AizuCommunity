@@ -1,30 +1,41 @@
-<--posts/new-->
+<%= stylesheet_link_tag 'form', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<div>
-    <p>新規投稿</p>
+<div class="pageTitle">
+    <div class="pageTitleJP">
+        <p class="pageTitleJP_p">投稿</p>
+        <div class="pageTitleENG"><p class="pageTitleENG_p">POST</p></div>
+    </div>
 </div>
 
-<div>
+<!--post/new-->
+<div class="form">
     <%= form_with model: @new_post, url: posts_path do |p| %>
-        <div>
-            <p>タイトル</p>
-            <%= p.text_field :title, autofocus: true, placeholder: "--タイトルを入力してください--" %>
-        </div>
-        <div>
-            <p>ジャンル</p>
-            <%= p.collection_select(:genre, Genre.all, :id, :name, {include_blank: "--ジャンルを選択してください--"}) %>
-        </div>
-        <div>
-            <p>内容</p>
-            <%= p.text_area :body, placeholder: "--内容を入力してください--" %>
-        </div>
-        <div>
-            <p>画像</p>
-            <%= p.file_field :image %>
+        <%= render 'layouts/error', model: p.object %>
+
+        <div class="formBox">
+            <p class="formLabel">タイトル</p>
+            <%= p.text_field :title, autofocus: true, placeholder: "--タイトル--", :class=>"formInput" %>
         </div>
 
-        <div>
-            <%= p.submit "投稿" %>
+        <div class="formBox">
+            <p class="formLabel">ジャンル</p>
+            <p class="formInput select" >
+                <%= p.collection_select(:genre_id, Genre.all, :id, :name, {include_blank: "--選択してください--"}) %>
+            </p>
+        </div>
+
+        <div class="formBox">
+            <p class="formLabel">内容</p>
+            <%= p.text_area :body, placeholder: "--内容--", :class=>"formInput area" %>
+        </div>
+
+        <div class="formBox">
+            <p class="formLabel">画像</p>
+            <%= p.file_field :image, :class=>"formInput img" %>
+        </div>
+
+        <div class="bt">
+            <%= p.submit "投稿/POST" %>
         </div>
     <% end %>
 </div>

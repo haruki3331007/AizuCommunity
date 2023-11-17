@@ -1,0 +1,24 @@
+<%= stylesheet_link_tag 'footer', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<div class="footer_1">
+    <div class="footer_box">
+        <p><%= link_to "ホーム", root_path%></p>
+        <p><%= link_to "投稿", posts_path%></p>
+        <div class="posts">
+            <p><%= link_to "全ての投稿", posts_path%></p>
+            <% Genre.all.each do |g| %>
+                <p><%= link_to g.name, posts_path(:genre=>g.id)%></p>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="footer_box">
+        <p><%= link_to "新着情報", news_index_path%></p>
+        <p><%= link_to "お問合せ", new_contact_path%></p>
+        <p><%= link_to "サイトについて", aboutUs_path%></p>
+    </div>
+</div>
+
+<div class="footer_2"> 
+    <p class="copyright">©2023 AiCO, All Rights Reserved.<p>
+</div>

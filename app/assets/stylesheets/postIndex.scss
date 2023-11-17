@@ -1,0 +1,181 @@
+.postIndex{
+    .titleBox{
+        width: fit-content;
+        margin: 0 auto;
+        padding: 16px 24px;
+        background-color: rgb(244,244,244);
+        border-radius: 8px;
+
+        .title{
+            color: rgb(128, 128, 128);
+            font-size: 24px;
+            text-align: center;
+        }
+    }
+
+    .genreBox{
+        width: fit-content;
+        margin: 16px auto;
+        form{
+            display: flex;
+            select{
+                color: rgb(128, 128, 128);
+                text-align: center;
+                border: 1px solid rgb(128, 128, 128);
+                border-radius: 6px;
+                padding: 4px 12px;
+            }
+
+            .bt{
+                margin: 0 8px;
+                padding: 4px 8px;
+                background-color: rgb(166,166,166); 
+            }
+        }
+    }
+
+    .newPostBox{
+        width: fit-content;
+        margin-right:  auto;
+        margin-left: 80px;
+        .bt{
+            font-size: 20px;
+            padding: 8px 24px;
+        }
+    }
+
+    .postIndexBox{
+        .body{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 24px 0;
+            .postEachBox{
+                width: 31%;
+                height: fit-content;
+                background-color: rgb(244,244,244);
+                border-radius: 24px;
+                padding: 24px 16px 4px 16px;
+                margin: 12px 1%;
+
+                .postTitleBox{
+                    height: fit-content;
+                    margin: 8px 0;
+                    .title, .name{
+                        width: 100%;
+                        font-size: 20px;
+                        text-align: center;
+                    }
+                    .name{
+                        font-size: 18px;
+                        margin: 8px 0;
+                    }
+                }
+
+                .postBodyBox{
+                    height: 320px;
+                    background-color: white;
+                    border-radius: 12px;
+                    color: rgb(71, 71, 71);
+                    padding: 0px 20px;
+                    position: relative;
+
+                    .bodyBox{
+                        height: 100%;
+                        overflow: hidden;
+                        position: relative;
+                        font-size: 15px;
+                        .imgBox{
+                            width: 90%;
+                            margin: 0px auto;
+                            .img{
+                                width: 100%;
+                            }
+                        }
+                    }
+                    .bodyBox:before {
+                        content: "";
+                        position: absolute;
+                        border-style: none;
+                        left: 0;
+                        bottom: 0;
+                        z-index: 2;
+                        width: 100%;
+                        height: 120px;
+                        background: linear-gradient(rgba(255,255,255,0) 0, #fff 100px);  
+                    }
+                    .bt{
+                        font-size: 14px;
+                        position: absolute;
+                        padding: 4px 8px;
+                        right: 8px;
+                        bottom: 8px;
+                        z-index: 3;
+                    }
+                }
+
+                .postBtBox{
+                    display: flex;
+                    width: 100%;
+                    padding: 12px 0;
+                    .like{
+                        width: 36px;
+                        .img{ width: 100%; }
+                    }
+                    .count{
+                        margin: 0 2px;
+                        margin-top: auto;
+                    }
+                    .bt{
+                        font-size: 14px;
+                        padding: 4px 8px;
+                        margin: auto 2px;
+                        &.edit{ margin-left: auto; }
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .titleBox{
+            padding: 12px 24px;
+            .title{ font-size: 20px; }
+        }
+    
+        .newPostBox{
+            width: 100%;
+            margin-right: 0;
+            margin-left: 0;
+            .bt{
+                font-size: 18px;
+                padding: 8px 0;
+            }
+        }
+    
+        .postIndexBox{
+            .body{
+                display: block;
+                .postEachBox{
+                    width: 96%;
+                    padding: 12px 12px 4px 12px;
+                    margin: 24px auto;
+    
+                    .postBodyBox{
+                        height: 280px;
+                        padding: 0px 24px;
+    
+                        .bodyBox{
+                            font-size: 15px;
+                            .imgBox{width: 100%;}
+                        }
+                    }
+    
+                    .postBtBox{
+                        padding: 8px;
+                    }
+                }
+            }
+        }
+    }
+}

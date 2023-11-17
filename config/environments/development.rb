@@ -81,9 +81,11 @@ Rails.application.configure do
     address:              "smtp-mail.outlook.com",
     port:                 587,
     domain:               "outlook.com",
-    user_name:            "haruki_1007@outlook.jp",
-    password:             "inawashiro524",
+    user_name:            ENV['MAILER_ADDRESS'],
+    password:             ENV['MAILER_PASSWORD'],
     authentication:       :login,
     enable_starttls_auto: true
   }
+
+  config.action_mailer.default_url_options = { :host => "localhost:3000" }
 end

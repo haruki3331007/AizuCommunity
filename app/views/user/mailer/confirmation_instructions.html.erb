@@ -1,5 +1,17 @@
-<p>Welcome <%= @email %>!</p>
+<p>
+    この度は当サイトにご登録いただき、誠にありがとうございます。お客様のアカウントが正常に作成されました。<br>
+    アカウントの有効化を完了するために、以下のリンクをクリックしてください。
+</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p><%= link_to '確認リンク', confirmation_url(@resource, confirmation_token: @token) %></p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p>
+    この確認手続きにより、アカウントが正常に有効化され、サービスをご利用いただけるようになります。<br>
+    何かご不明点やお困りのことがございましたら、お気軽にご連絡ください。<br>
+    それでは、より良いサービスをお届けできることを心より願っております。<br>
+    どうぞよろしくお願いいたします。<br>
+</p>
+
+<p>
+    AiCO 管理人
+</p>

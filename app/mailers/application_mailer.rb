@@ -1,3 +1,3 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'haruki_1007@outlook.jp'
+  default from: '"AiCO 管理人"<AizuCommunity@outlook.com>'
 end

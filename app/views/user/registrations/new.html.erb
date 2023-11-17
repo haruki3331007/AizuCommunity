@@ -1,47 +1,57 @@
-<h2>登録</h2>
+<%= stylesheet_link_tag 'form', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<%= form_for(resource, as: resource_name, url: user_registration_path) do |f| %>
-  <%= render "user/shared/error_messages", resource: resource %>
+<div class="pageTitle">
+    <div class="pageTitleJP">
+        <p class="pageTitleJP_p">新規登録</p>
+        <div class="pageTitleENG"><p class="pageTitleENG_p">SIGN UP</p></div>
+    </div>
+</div>
 
-  <div class="field">
-    <p>ニックネーム</p>
-    <%= f.text_field :name, autofocus: true, autocomplete: "名前" %>
+<!--user/registrations/new-->
+  <div class="form">
+    <%= form_for(resource, as: resource_name, url: user_registration_path) do |f| %>
+      <%= render "user/shared/error_messages", resource: resource %>
+
+      <div class="formBox">
+        <p class="formLabel">ニックネーム</p>
+        <%= f.text_field :name, autofocus: true, autocomplete: "--ニックネーム--", :class=>"formInput"  %>
+      </div>
+
+      <div class="formBox">
+        <p class="formLabel">ユーザ名</p>
+        <%= f.text_field :user_name, autocomplete: "--ユーザ名--", :class=>"formInput"  %>
+      </div>
+
+      <div class="formBox">
+        <p class="formLabel">お住まい</p>
+        <p class="formInput select" >
+          <%= f.select :location, {'会津若松市内': 1, 
+                                  '会津若松市外（福島県内）': 2, 
+                                  '会津若松市外（福島県外）': 3},
+                                  { include_blank: '--選択してください--'}%>  
+        </p>
+      </div>
+
+      <div class="formBox">
+        <p class="formLabel">メールアドレス</p>
+        <%= f.email_field :email, autocomplete: "--メールアドレス--", :class=>"formInput"  %>
+      </div>
+
+      <div class="formBox">
+          <p class="formLabel">パスワード</p>
+          <%= f.password_field :password, autocomplete: "--パスワード--", :class=>"formInput"  %>
+      </div>
+
+      <div class="formBox">
+        <p class="formLabel">パスワード<br>（確認）</p>
+        <%= f.password_field :password_confirmation, autocomplete: "--パスワード(確認)--", :class=>"formInput" %>
+      </div>
+
+      <div class="bt">
+        <%= f.submit "登録/REGISTER" %>
+      </div>
+    <% end %>
+
+    <%= render "user/shared/links" %>
   </div>
-
-  <div class="field">
-    <p>ユーザ名</p>
-    <%= f.text_field :user_name, autocomplete: "ユーザ名" %>
-  </div>
-
-  <div class="field">
-    <p>お住まい</p>
-    <%= f.select :location, {'会津若松市内': 1, 
-                             '会津若松市外（福島県内）': 2, 
-                             '会津若松市外（福島県外）': 3},
-                            { include_blank: '選択してください'}%>  
-  </div>
-
-  <div class="field">
-    <p>メールアドレス</p>
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <p>パスワード</p>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <em><%= @minimum_password_length %> 文字以上に設定してください。</em>
-    <% end %><br />
-  </div>
-
-  <div class="field">
-    <p>パスワード（確認）</p>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "登録" %>
-  </div>
-<% end %>
-
-<%= render "user/shared/links" %>
+</div>

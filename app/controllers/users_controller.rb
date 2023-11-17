@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
-    before_action :correct_user, except: [:index]
+    before_action :correct_user, except: [:index, :complete, :show]
     before_action :correct_admin, only: [:index]
+
+    def complete
+
+    end
 
     def index
         @users = User.all
@@ -11,19 +15,6 @@ class UsersController < ApplicationController
             @user = User.find(params[:id])
         else
             @user = current_user
-        end
-    end
-
-    def edit
-        @user = User.find(params[:id])
-    end
-
-    def update
-        @user = User.find(params[:id])
-        if @user.update(user_params)
-            redirect_to user_path(@user.id)
-        else
-            render "edit"
         end
     end
 
@@ -48,14 +39,5 @@ class UsersController < ApplicationController
         unless admin_signed_in?
             redirect_to root_path
         end
-    end
-
-    def user_params
-        params.require(:user).permit(   :name, 
-                                        :user_name,
-                                        :email,
-                                        :location,
-                                        :password
-                                    )
     end
 end

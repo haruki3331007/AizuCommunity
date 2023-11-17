@@ -7,23 +7,21 @@
     <body>
         <p>※このメールはシステムにより、自動で返信しています。ご返信をいただいても対応できかねますことをご了承ください。</p>
 
-        <p>改めて、担当者よりご連絡させていただきますので、今しばらくお待ちください。</p>
         <p>以下の内容で、お問い合わせをお受けいたしました。</p>
 
-        <p> <%= @contact.name %> 様</p>
-        メールアドレス：
-        お問い合わせ日時：年 月 日 時 分
-        お問い合わせジャンル：
-        お問い合わせ件名：
-        お問い合わせ内容：
-        
-        今後とも（ショップ名）を宜しくお願いします。
+        <p>
+            <%= @contact.name %> 様<br>
+            メールアドレス：<%= @contact.email %><br>
+            お問い合わせ日時：<%= @contact.created_at.strftime("%Y/%m/%d") %><br>
+            お問い合わせ項目：<%= @contact.genre_name %><br>
+            お問い合わせ件名：<%= @contact.title %><br>
+            お問い合わせ内容：<%= @contact.body %><br>
+        </p>
 
+        <p>改めて、担当者よりご連絡させていただきますので、今しばらくお待ちください。</p>
 
-        t.string :name, null: false
-        t.string :email, null: false
-        t.integer :genre, null: false
-        t.string :title, null: false
-        t.string :body, null: false
+        <p>今後ともAiCOを宜しくお願いします。</p>
+
+        <p>AiCO 管理人</p>
     </body>
 </html>

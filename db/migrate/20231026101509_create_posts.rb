@@ -4,9 +4,9 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.integer :user_id, null: false
       
       t.string :title, null: false
-      t.string :body, null: false
+      t.string :body, null: true
       t.string :image_id, null: true
-      t.integer :genre, null: false
+      t.integer :genre_id, null: false
 
       t.timestamps
     end
