@@ -166,7 +166,6 @@ GEM
     nokogiri (1.15.4-x86_64-darwin)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    pg (1.5.4)
     public_suffix (5.0.3)
     puma (5.6.7)
       nio4r (~> 2.0)
@@ -311,7 +310,6 @@ DEPENDENCIES
   kaminari
   kaminari-bootstrap
   listen (~> 3.3)
-  pg
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.0)
