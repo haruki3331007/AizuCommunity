@@ -69,3 +69,6 @@ gem 'kaminari-bootstrap'
 gem 'rails-i18n'
 
 gem 'dotenv-rails'
+group :production do
+  gem 'unicorn', '5.7.0'
+end
