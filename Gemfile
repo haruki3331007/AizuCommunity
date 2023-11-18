@@ -6,7 +6,12 @@ ruby '3.1.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.0'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+# gem 'sqlite3', '~> 1.4'
+gem 'sqlite3', group: :development
+# 本番ではpostgressを使用する
+group :production do
+  gem 'pg'
+end
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -67,3 +72,7 @@ gem 'kaminari-bootstrap'
 gem 'rails-i18n'
 
 gem 'dotenv-rails'
+
+group :production do
+  gem 'unicorn', '5.7.0'
+end
